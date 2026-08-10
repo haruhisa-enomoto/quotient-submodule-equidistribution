@@ -1,0 +1,24 @@
+name = "op_conjecture_verification"
+version = "0.1.0"
+packagesDir = "../.lake/packages"
+defaultTargets = ["ComparatorChallenges"]
+
+[[require]]
+name = "op_conjecture"
+path = ".."
+
+[[require]]
+name = "Comparator"
+git = "https://github.com/leanprover/comparator.git"
+rev = "v4.32.0"
+
+[[lean_lib]]
+name = "ComparatorChallenges"
+roots = [
+  "ComparatorChallenges.MainTheorem",
+  "ComparatorChallenges.FirstLastFour",
+  "ComparatorChallenges.Nakayama",
+  "ComparatorChallenges.RadicalSquareZero",
+  "ComparatorChallenges.RepresentationDirected",
+]
+

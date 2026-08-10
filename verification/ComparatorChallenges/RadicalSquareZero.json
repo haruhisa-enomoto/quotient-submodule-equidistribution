@@ -1,0 +1,13 @@
+{
+  "challenge_module": "ComparatorChallenges.RadicalSquareZero",
+  "solution_module": "OpConjecture.RadicalSquareZero.SeparatedDirectedInterface",
+  "theorem_names": [
+    "OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

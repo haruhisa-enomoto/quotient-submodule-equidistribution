@@ -1,0 +1,103 @@
+# The OP conjecture in Lean
+
+This repository contains a Lean 4 formalization accompanying Haruhisa
+Enomoto's manuscript *An equidistribution conjecture for quotient-closed and
+submodule-closed subcategories*.  It is a standalone Mathlib project: the
+production build has exactly one direct dependency, a fixed revision of
+Mathlib.
+
+The universal OP conjecture is **stated but remains open**.  The checked main
+theorem proves it for each representation-finite algebra in any of these four
+classes:
+
+1. the algebra has at most nine indecomposable right modules up to isomorphism;
+2. it is a Nakayama algebra;
+3. its Jacobson radical has square zero;
+4. it is representation-directed.
+
+No Dynkin classification, ORT parametrization, or separate Poincaré-polynomial
+theorem is part of the release target.
+
+## Where to look
+
+[`MainResults.lean`](MainResults.lean) is the short, stable map of the
+advertised declarations.  The paper-facing aggregation theorem is
+[`OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution`](OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean).
+Its four branches are exposed by
+`OpConjecture.MainTheoremEndpoint.MainTheoremWitness` in the same file.
+
+| Result | Lean declaration | Source |
+| --- | --- | --- |
+| Main four-case theorem | `OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution` | [`MainTheoremEndpoint.lean`](OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean) |
+| First and last four coefficients | `OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four` | [`FirstLastFourEndpoint.lean`](OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean) |
+| At most nine indecomposables | `OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine` | [`FirstLastFourEndpoint.lean`](OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean) |
+| Nakayama case | `OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution` | [`NakayamaAlgebraProductFormula.lean`](OpConjecture/RepresentationTheory/NakayamaAlgebraProductFormula.lean) |
+| Radical-square-zero case | `OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero` | [`SeparatedDirectedInterface.lean`](OpConjecture/RadicalSquareZero/SeparatedDirectedInterface.lean) |
+| Representation-directed case | `OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution` | [`AlgebraEndpoint.lean`](OpConjecture/RepresentationDirected/AlgebraEndpoint.lean) |
+| Universal conjecture (statement only) | `OpConjecture.RightQuotientSubmoduleEquidistribution` | [`FiniteDimensionalAlgebra.lean`](OpConjecture/RepresentationTheory/FiniteDimensionalAlgebra.lean) |
+
+[`formalization.yaml`](formalization.yaml) gives the same map in a
+machine-readable form, following the target-oriented convention used by
+OpenAI's `ten-proofs` repository.  [`Audit.lean`](Audit.lean) checks every
+public target and prints its axiom dependencies.  The nested
+[`verification`](verification/) project contains concise independent target
+statements; strict Comparator configurations are supplied for the three
+standard-axiom class endpoints. Its intentional `sorry`s are not part of the
+production library.
+
+## Build and verify
+
+The pinned toolchain is Lean 4.32.0.  From the repository root:
+
+```text
+lake update
+lake exe cache get
+lake build MainResults
+lake env lean Audit.lean
+python3 tools/check_release.py
+```
+
+`lake build OpConjecture` checks the full retained library.  The release check
+also rejects production `sorry`/`admit`, project-local axioms, TauCeti imports
+or package dependencies, missing targets, and broken static-site links.
+
+## Scope and audit status
+
+Lean has checked the declaration bodies against the pinned Mathlib revision;
+the production source contains no `sorry`, `admit`, or project-local `axiom`.
+The finite first/last-four classifiers use Lean 4.32's `bv_decide`, whose
+native LRAT-certificate checks appear as generated axioms and add the compiler
+and interpreter to the trusted base for that branch.  [`TRUST.md`](TRUST.md)
+records the exact scope; `Audit.lean` prints the generated names. The theorem
+signatures have also undergone a paper-interface audit. This is
+not a claim that an independent human has line-by-line audited every proof
+body.  In particular, the first/last-four development is exposed separately
+to make the most technical branch easy to inspect.
+
+Right modules are represented as finitely generated modules over `Aᵐᵒᵖ`.
+The main theorem assumes a field `K`, `IsAlgClosed K`, a finite-dimensional
+`K`-algebra `A`, and a right-representation-finiteness witness.  The Nakayama
+case itself is formalized over an arbitrary field where algebraic closedness
+is unnecessary.
+
+Readers need only basic representation theory of finite-dimensional algebras
+to understand the mathematical overview.  Lean familiarity is useful for
+reading declarations but is not assumed by the website.
+
+## Documentation
+
+The hand-written site lives in [`website`](website/) and is ready for GitHub
+Pages.  API documentation is generated with doc-gen4 from the isolated
+[`docbuild`](docbuild/) project, so documentation tooling does not become a
+production dependency. The site also links source-derived, project-only
+interactive import graphs for the main theorem and each principal branch.
+Automatic Pages deployment is skipped while the repository is private; after
+making it public, run the `Pages` workflow once from the Actions tab.  Later
+pushes to `main` deploy automatically.
+
+## Provenance and license
+
+See [`PROVENANCE.md`](PROVENANCE.md) for the frozen source checkpoint and
+dependency boundary.  A small foundational layer was adapted from TauCeti;
+those source headers and [`NOTICE`](NOTICE) record the attribution.  The
+repository is licensed under Apache-2.0.

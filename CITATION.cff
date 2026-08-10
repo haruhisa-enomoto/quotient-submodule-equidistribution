@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this formalization, please cite this repository and the accompanying manuscript."
+title: "The OP conjecture in Lean"
+type: software
+authors:
+  - family-names: "Enomoto"
+    given-names: "Haruhisa"
+license: Apache-2.0
+repository-code: "https://github.com/haruhisa-enomoto/op-conjecture-lean"

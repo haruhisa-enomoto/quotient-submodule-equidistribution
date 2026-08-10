@@ -1,0 +1,21 @@
+import MainResults
+
+/-!
+# Release audit
+
+Compiling this file confirms that every advertised declaration is present in
+the pinned environment.  `#print axioms` records the kernel-visible axiom
+dependencies used by each theorem.
+-/
+
+#print axioms OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution
+#print axioms OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four
+#print axioms OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine
+#print axioms OpConjecture.NakayamaAlgebraProductFormula.rightRepresentationFinite_of_isRightNakayamaAlgebra
+#print axioms OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution
+#print axioms OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero
+#print axioms OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution
+#print axioms OpConjecture.IndecomposableSkeleton.isPaperNormal_iff_isMinimalGenerator
+#print axioms OpConjecture.IndecomposableSkeleton.intrinsicBasicNormalIsoClassEquivCompactClosed
+#print axioms OpConjecture.rightModule_compact_iff_functoriallyFinite
+#print axioms OpConjecture.IndecomposableSkeleton.qCompact_isMinimalGenerator_iff_eq_relativeSplitProjectives

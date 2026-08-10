@@ -1,0 +1,13 @@
+name = "op_conjecture_docbuild"
+version = "0.1.0"
+packagesDir = "../.lake/packages"
+
+[[require]]
+name = "doc-gen4"
+git = "https://github.com/leanprover/doc-gen4.git"
+rev = "v4.32.0"
+
+[[require]]
+name = "op_conjecture"
+path = ".."
+

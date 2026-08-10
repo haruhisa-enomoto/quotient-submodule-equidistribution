@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Exact mathematical and Lean theorem map for the OP-conjecture formalization.">
+  <title>Results · The OP conjecture in Lean</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>window.MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html">OP conjecture · Lean</a>
+      <a href="results.html" aria-current="page">Results</a>
+      <a href="architecture.html">Code map</a>
+      <a href="api/index.html">API docs</a>
+      <a href="https://github.com/haruhisa-enomoto/op-conjecture-lean">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <div class="eyebrow">Mathematics ↔ declarations</div>
+    <h1>Exact theorem map</h1>
+    <p class="lead">These are the stable declarations a reader should inspect. The fully qualified names are also checked by <code>MainResults.lean</code>, recorded in <code>formalization.yaml</code>, and audited by <code>Audit.lean</code>.</p>
+
+    <section aria-labelledby="setup">
+      <h2 id="setup">Common setup</h2>
+      <p>For the paper-facing main theorem, $K$ is an algebraically closed field, $A$ is a finite-dimensional $K$-algebra, and the canonical isomorphism classes of indecomposable right $A$-modules are finite. A right module is encoded as a module over $A^{\mathrm{op}}$.</p>
+      <p>For each $i$, let $q_i$ count quotient-closed supports of cardinality $i$ and $s_i$ count submodule-closed supports of cardinality $i$. The conclusion is the polynomial, or equivalently levelwise, equality</p>
+      <div class="math-panel">$$\forall i,\ q_i=s_i \qquad\Longleftrightarrow\qquad \sum_i q_i t^i=\sum_i s_i t^i.$$</div>
+      <p>The universal proposition is <code>OpConjecture.RightQuotientSubmoduleEquidistribution</code>. It is defined and related to level counts, but not proved for every representation-finite algebra.</p>
+    </section>
+
+    <section aria-labelledby="main-result">
+      <h2 id="main-result">Main four-case theorem</h2>
+      <p>If the representation-finite algebra $A$ has at most nine indecomposable right modules, is Nakayama, has $\operatorname{rad}(A)^2=0$, or is representation-directed, then the quotient and submodule level polynomials agree.</p>
+      <pre><code>OpConjecture.MainTheoremEndpoint.MainTheoremWitness
+OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution</code></pre>
+      <p><a href="https://github.com/haruhisa-enomoto/op-conjecture-lean/blob/main/OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean">Source</a> · <a href="api/OpConjecture/RepresentationTheory/MainTheoremEndpoint.html">API</a> · <a href="import-graphs/main-theorem.html">Import graph</a></p>
+    </section>
+
+    <section aria-labelledby="boundary-result">
+      <h2 id="boundary-result">First and last four coefficients</h2>
+      <p>For every finite-dimensional algebra node $B$, Lean proves</p>
+      <div class="math-panel">$$q_i(B)=s_i(B)\quad(0\le i\le4),\qquad q_{n-i}(B)=s_{n-i}(B)\quad(0\le i\le4),$$<p>where $n$ is the number of indecomposable labels. If $n\le9$, those two ranges cover all degrees and give full equidistribution.</p></div>
+      <pre><code>OpConjecture.BottomLevels.FiniteDimensionalRecurrence.
+  FirstLastFourEndpoint.bottom_top_four
+OpConjecture.BottomLevels.FiniteDimensionalRecurrence.
+  FirstLastFourEndpoint.equidistribution_of_card_le_nine</code></pre>
+      <p><a href="https://github.com/haruhisa-enomoto/op-conjecture-lean/blob/main/OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean">Source</a> · <a href="api/OpConjecture/RepresentationTheory/FirstLastFourEndpoint.html">API</a> · <a href="import-graphs/first-last-four.html">Import graph</a></p>
+    </section>
+
+    <section aria-labelledby="classes">
+      <h2 id="classes">The three structural classes</h2>
+      <table>
+        <thead><tr><th>Case</th><th>Formal hypothesis</th><th>Conclusion declaration</th><th>Inspect</th></tr></thead>
+        <tbody>
+          <tr><td>Nakayama</td><td>Each indecomposable projective and injective right module is uniserial. This case does not require algebraic closedness.</td><td><code>OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution</code></td><td><a href="api/OpConjecture/RepresentationTheory/NakayamaAlgebraProductFormula.html">API</a> · <a href="import-graphs/nakayama.html">graph</a></td></tr>
+          <tr><td>Radical square zero</td><td>$(\operatorname{jac} A)^2=\bot$ together with the main theorem's representation-finiteness witness.</td><td><code>OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero</code></td><td><a href="api/OpConjecture/RadicalSquareZero/SeparatedDirectedInterface.html">API</a> · <a href="import-graphs/radical-square-zero.html">graph</a></td></tr>
+          <tr><td>Representation-directed</td><td>Finitely many indecomposables and no cycle of nonzero nonisomorphisms in the canonical skeleton.</td><td><code>OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution</code></td><td><a href="api/OpConjecture/RepresentationDirected/AlgebraEndpoint.html">API</a> · <a href="import-graphs/representation-directed.html">graph</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-labelledby="structural">
+      <h2 id="structural">Generator and compact-closure dictionary</h2>
+      <p>The retained library also formalizes the structural bridge used to express the paper's generator-minimal classification intrinsically. The principal navigation points are:</p>
+      <ul>
+        <li><code>OpConjecture.IndecomposableSkeleton.isPaperNormal_iff_isMinimalGenerator</code></li>
+        <li><code>OpConjecture.IndecomposableSkeleton.intrinsicBasicNormalIsoClassEquivCompactClosed</code></li>
+        <li><code>OpConjecture.rightModule_compact_iff_functoriallyFinite</code></li>
+        <li><code>OpConjecture.IndecomposableSkeleton.qCompact_isMinimalGenerator_iff_eq_relativeSplitProjectives</code></li>
+      </ul>
+      <p><a href="import-graphs/generator-minimal.html">Open the project-only import graph</a>.</p>
+    </section>
+
+    <section aria-labelledby="evidence">
+      <h2 id="evidence">What the status means</h2>
+      <p>All production declarations compile with the pinned toolchain and Mathlib revision, without source-level project axioms, <code>sorry</code>, or <code>admit</code>. Kernel-visible axiom output is generated from <code>Audit.lean</code>. The first/last-four classifier uses native <code>bv_decide</code> LRAT-certificate checks, so Lean reports generated native axioms and the compiler/interpreter are trusted for that branch. The three standalone structural-class endpoints report only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>
+      <p class="note">This establishes compiler checking and exact theorem-interface coverage. It does not by itself constitute an independent line-by-line mathematical audit of every proof body.</p>
+    </section>
+  </main>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · <a href="index.html">Project overview</a></footer>
+</body>
+</html>

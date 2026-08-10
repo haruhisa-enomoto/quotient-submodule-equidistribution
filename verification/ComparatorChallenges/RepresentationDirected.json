@@ -1,0 +1,13 @@
+{
+  "challenge_module": "ComparatorChallenges.RepresentationDirected",
+  "solution_module": "OpConjecture.RepresentationDirected.AlgebraEndpoint",
+  "theorem_names": [
+    "OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

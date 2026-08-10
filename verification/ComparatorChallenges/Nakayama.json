@@ -1,0 +1,13 @@
+{
+  "challenge_module": "ComparatorChallenges.Nakayama",
+  "solution_module": "OpConjecture.RepresentationTheory.NakayamaAlgebraProductFormula",
+  "theorem_names": [
+    "OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

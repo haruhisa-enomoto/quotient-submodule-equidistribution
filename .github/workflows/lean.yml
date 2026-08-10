@@ -1,0 +1,50 @@
+name: Lean
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: leanprover/lean-action@c544e89643240c6b398f14a431bcdc6309e36b3e # v1.4.0
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Build advertised results
+        run: lake build MainResults
+      - name: Record kernel-visible axioms
+        run: lake env lean Audit.lean | tee axiom-report.txt
+      - name: Generate import graphs
+        run: bash tools/generate_import_graphs.sh
+      - name: Check release boundary
+        run: python3 tools/check_release.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: axiom-report
+          path: axiom-report.txt
+
+  target-statements:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: leanprover/lean-action@c544e89643240c6b398f14a431bcdc6309e36b3e # v1.4.0
+        with:
+          auto-config: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Build solution environment
+        run: lake build MainResults
+      - name: Build independent Comparator challenges
+        working-directory: verification
+        run: |
+          lake update
+          lake build ComparatorChallenges
+

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lean formalization of four main cases of the OP equidistribution conjecture.">
+  <title>The OP conjecture in Lean</title>
+  <link rel="stylesheet" href="assets/site.css">
+  <script>window.MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="index.html">OP conjecture · Lean</a>
+      <a href="results.html">Results</a>
+      <a href="architecture.html">Code map</a>
+      <a href="api/index.html">API docs</a>
+      <a href="https://github.com/haruhisa-enomoto/op-conjecture-lean">GitHub</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Formalized mathematics · Lean 4</div>
+        <h1>Quotients and submodules, equidistributed</h1>
+        <p class="lead">A Mathlib-only formalization of the four proved cases in Haruhisa Enomoto's OP-conjecture manuscript, with the exact Lean targets exposed for inspection.</p>
+        <div class="actions">
+          <a class="button primary" href="results.html">Read the theorem map</a>
+          <a class="button" href="api/OpConjecture/RepresentationTheory/MainTheoremEndpoint.html">Open the main API page</a>
+        </div>
+      </div>
+      <aside class="status" aria-label="Formalization status">
+        <strong>Main four-case theorem checked</strong>
+        <dl>
+          <dt>Production dependencies</dt><dd>Mathlib only</dd>
+          <dt>Lean</dt><dd>4.32.0, pinned</dd>
+          <dt>Production holes</dt><dd>0 <code>sorry</code>, 0 <code>admit</code></dd>
+          <dt>Finite certificate trust</dt><dd>Native <code>bv_decide</code> checks in the first/last-four branch; documented explicitly</dd>
+          <dt>Universal conjecture</dt><dd>Open</dd>
+          <dt>Audit boundary</dt><dd>Statement interface checked; independent proof-body audit not claimed</dd>
+        </dl>
+      </aside>
+    </section>
+
+    <section aria-labelledby="conjecture">
+      <h2 id="conjecture">The question</h2>
+      <p>Let $A$ be a representation-finite finite-dimensional algebra. Count quotient-closed and submodule-closed additive subcategories by the number of indecomposable isomorphism classes they contain. If $q_i(A)$ and $s_i(A)$ are those two counts at level $i$, the strong OP conjecture asks whether</p>
+      <div class="math-panel">$$Q_A(t)=\sum_i q_i(A)t^i \quad = \quad \sum_i s_i(A)t^i=S_A(t).$$</div>
+      <p>The formalization models right $A$-modules as finitely generated modules over $A^{\mathrm{op}}$ and encodes the two families as closure systems on a canonical finite skeleton of indecomposable isomorphism classes.</p>
+    </section>
+
+    <section aria-labelledby="proved-cases">
+      <h2 id="proved-cases">What Lean proves here</h2>
+      <div class="grid">
+        <article class="card"><div class="tag">Finite boundary</div><h3>At most nine indecomposables</h3><p>Equality of the first and last four coefficients covers every possible degree.</p></article>
+        <article class="card"><div class="tag">Serial structure</div><h3>Nakayama algebras</h3><p>The two level polynomials are identified through products of chain polynomials.</p></article>
+        <article class="card"><div class="tag">Separated model</div><h3>Radical square zero</h3><p>A classification-free separated-algebra and representation-directed route proves equidistribution.</p></article>
+        <article class="card"><div class="tag">AR combinatorics</div><h3>Representation-directed</h3><p>A canonical reduced Auslander–Reiten word gives matching quotient and submodule profiles.</p></article>
+      </div>
+      <p class="note"><strong>Scope:</strong> the site reports the paper's main equidistribution theorem. It intentionally omits optional Dynkin, ORT, and Poincaré-polynomial refinements.</p>
+    </section>
+
+    <section aria-labelledby="inspect">
+      <h2 id="inspect">Inspect the artifact</h2>
+      <div class="flow">
+        <article class="card"><h3>1. Exact targets</h3><p><a href="results.html">Match each mathematical claim</a> to its fully qualified Lean declaration.</p></article>
+        <article class="card"><h3>2. Dependency shape</h3><p><a href="architecture.html">Follow the endpoint modules</a> and their project-only import graphs.</p></article>
+        <article class="card"><h3>3. Kernel-facing API</h3><p><a href="api/index.html">Browse generated doc-gen4 pages</a> for types, namespaces, and source links.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · Formalization snapshot 2026-08-10</footer>
+</body>
+</html>

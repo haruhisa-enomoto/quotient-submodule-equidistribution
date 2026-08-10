@@ -1,0 +1,13 @@
+OP-conjecture Lean formalization
+Copyright 2026 Haruhisa Enomoto
+
+This product includes portions adapted from the TauCeti project at commit
+eeb5b4e20c16d302fab0930c4b589c1e0bdd7241.
+Copyright 2026 Tau Ceti contributors.
+Licensed under the Apache License, Version 2.0.  Attribution headers are
+retained in the adapted source files.
+
+Mathlib is an external build dependency and is not redistributed in this
+repository.  Its source and license are available from
+https://github.com/leanprover-community/mathlib4.
+

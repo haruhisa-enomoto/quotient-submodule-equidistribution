@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator-minimal dictionary · import graph</title>
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+  <style>
+    :root { font-family: Inter, system-ui, sans-serif; color: #172126; background: #f7f6f1; }
+    body { margin: 0; } header { padding: 1rem 1.3rem; border-bottom: 1px solid #d7dfdd; }
+    h1 { font: 500 1.55rem Georgia, serif; margin: 0 0 .25rem; } p { margin: .2rem 0; color: #53656d; }
+    a { color: #075854; } #graph { width: 100%; height: 78vh; background: white; border-bottom: 1px solid #d7dfdd; }
+    details { margin: 1rem 1.3rem 2rem; } code { font-family: ui-monospace, monospace; }
+    li { margin: .2rem 0; }
+  </style>
+</head>
+<body>
+  <header><h1>Generator-minimal dictionary</h1><p>Project-only transitive import closure of <code>OpConjecture.RepresentationTheory.IntrinsicNormalModules</code>: 18 modules, 18 direct import edges. Drag to pan; scroll to zoom. <a href="../architecture.html">Back to code map</a>.</p></header>
+  <div id="graph" role="img" aria-label="Interactive Lean module import graph"></div>
+  <details><summary>Accessible module list</summary><ol><li><code>OpConjecture.ConvexGeometry.Basic</code></li>
+<li><code>OpConjecture.ConvexGeometry.ClosedSets</code></li>
+<li><code>OpConjecture.ConvexGeometry.Compact</code></li>
+<li><code>OpConjecture.ConvexGeometry.CompletelyJoinIrreducible</code></li>
+<li><code>OpConjecture.ConvexGeometry.Finite</code></li>
+<li><code>OpConjecture.Foundation.RingTheory.KrullSchmidt.Indecomposable</code></li>
+<li><code>OpConjecture.RepresentationTheory.AdditiveSubcategory</code></li>
+<li><code>OpConjecture.RepresentationTheory.AntiExchange</code></li>
+<li><code>OpConjecture.RepresentationTheory.Approximation</code></li>
+<li><code>OpConjecture.RepresentationTheory.ConormalModules</code></li>
+<li><code>OpConjecture.RepresentationTheory.EndomorphismRadical</code></li>
+<li><code>OpConjecture.RepresentationTheory.FacSub</code></li>
+<li><code>OpConjecture.RepresentationTheory.FiniteType</code></li>
+<li><code>OpConjecture.RepresentationTheory.IntrinsicNormalModules</code></li>
+<li><code>OpConjecture.RepresentationTheory.NormalModules</code></li>
+<li><code>OpConjecture.RepresentationTheory.SplitInjective</code></li>
+<li><code>OpConjecture.RepresentationTheory.SubmoduleAntiExchange</code></li>
+<li><code>OpConjecture.RepresentationTheory.Trace</code></li></ol></details>
+  <script>
+    const nodes = new vis.DataSet([{"id": "OpConjecture.ConvexGeometry.Basic", "label": "Basic", "title": "OpConjecture.ConvexGeometry.Basic", "color": "#087d78"}, {"id": "OpConjecture.ConvexGeometry.ClosedSets", "label": "ClosedSets", "title": "OpConjecture.ConvexGeometry.ClosedSets", "color": "#087d78"}, {"id": "OpConjecture.ConvexGeometry.Compact", "label": "Compact", "title": "OpConjecture.ConvexGeometry.Compact", "color": "#087d78"}, {"id": "OpConjecture.ConvexGeometry.CompletelyJoinIrreducible", "label": "CompletelyJoinIrreducible", "title": "OpConjecture.ConvexGeometry.CompletelyJoinIrreducible", "color": "#087d78"}, {"id": "OpConjecture.ConvexGeometry.Finite", "label": "Finite", "title": "OpConjecture.ConvexGeometry.Finite", "color": "#087d78"}, {"id": "OpConjecture.Foundation.RingTheory.KrullSchmidt.Indecomposable", "label": "Indecomposable", "title": "OpConjecture.Foundation.RingTheory.KrullSchmidt.Indecomposable", "color": "#718078"}, {"id": "OpConjecture.RepresentationTheory.AdditiveSubcategory", "label": "AdditiveSubcategory", "title": "OpConjecture.RepresentationTheory.AdditiveSubcategory", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.AntiExchange", "label": "AntiExchange", "title": "OpConjecture.RepresentationTheory.AntiExchange", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.Approximation", "label": "Approximation", "title": "OpConjecture.RepresentationTheory.Approximation", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.ConormalModules", "label": "ConormalModules", "title": "OpConjecture.RepresentationTheory.ConormalModules", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.EndomorphismRadical", "label": "EndomorphismRadical", "title": "OpConjecture.RepresentationTheory.EndomorphismRadical", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.FacSub", "label": "FacSub", "title": "OpConjecture.RepresentationTheory.FacSub", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.FiniteType", "label": "FiniteType", "title": "OpConjecture.RepresentationTheory.FiniteType", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.IntrinsicNormalModules", "label": "IntrinsicNormalModules", "title": "OpConjecture.RepresentationTheory.IntrinsicNormalModules", "color": "#9c5b27"}, {"id": "OpConjecture.RepresentationTheory.NormalModules", "label": "NormalModules", "title": "OpConjecture.RepresentationTheory.NormalModules", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.SplitInjective", "label": "SplitInjective", "title": "OpConjecture.RepresentationTheory.SplitInjective", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.SubmoduleAntiExchange", "label": "SubmoduleAntiExchange", "title": "OpConjecture.RepresentationTheory.SubmoduleAntiExchange", "color": "#087d78"}, {"id": "OpConjecture.RepresentationTheory.Trace", "label": "Trace", "title": "OpConjecture.RepresentationTheory.Trace", "color": "#087d78"}]);
+    const edges = new vis.DataSet([{"from": "OpConjecture.ConvexGeometry.Basic", "to": "OpConjecture.ConvexGeometry.Finite"}, {"from": "OpConjecture.ConvexGeometry.Basic", "to": "OpConjecture.RepresentationTheory.FacSub"}, {"from": "OpConjecture.ConvexGeometry.ClosedSets", "to": "OpConjecture.ConvexGeometry.CompletelyJoinIrreducible"}, {"from": "OpConjecture.ConvexGeometry.Compact", "to": "OpConjecture.RepresentationTheory.Approximation"}, {"from": "OpConjecture.ConvexGeometry.CompletelyJoinIrreducible", "to": "OpConjecture.ConvexGeometry.Compact"}, {"from": "OpConjecture.ConvexGeometry.Finite", "to": "OpConjecture.ConvexGeometry.ClosedSets"}, {"from": "OpConjecture.Foundation.RingTheory.KrullSchmidt.Indecomposable", "to": "OpConjecture.RepresentationTheory.FiniteType"}, {"from": "OpConjecture.RepresentationTheory.AdditiveSubcategory", "to": "OpConjecture.RepresentationTheory.Approximation"}, {"from": "OpConjecture.RepresentationTheory.AntiExchange", "to": "OpConjecture.RepresentationTheory.SubmoduleAntiExchange"}, {"from": "OpConjecture.RepresentationTheory.Approximation", "to": "OpConjecture.RepresentationTheory.NormalModules"}, {"from": "OpConjecture.RepresentationTheory.ConormalModules", "to": "OpConjecture.RepresentationTheory.IntrinsicNormalModules"}, {"from": "OpConjecture.RepresentationTheory.EndomorphismRadical", "to": "OpConjecture.RepresentationTheory.AntiExchange"}, {"from": "OpConjecture.RepresentationTheory.FacSub", "to": "OpConjecture.RepresentationTheory.Trace"}, {"from": "OpConjecture.RepresentationTheory.FiniteType", "to": "OpConjecture.RepresentationTheory.FacSub"}, {"from": "OpConjecture.RepresentationTheory.NormalModules", "to": "OpConjecture.RepresentationTheory.ConormalModules"}, {"from": "OpConjecture.RepresentationTheory.SplitInjective", "to": "OpConjecture.RepresentationTheory.AdditiveSubcategory"}, {"from": "OpConjecture.RepresentationTheory.SubmoduleAntiExchange", "to": "OpConjecture.RepresentationTheory.SplitInjective"}, {"from": "OpConjecture.RepresentationTheory.Trace", "to": "OpConjecture.RepresentationTheory.EndomorphismRadical"}]);
+    const options = {
+      layout: { hierarchical: { enabled: true, direction: 'DU', sortMethod: 'directed', levelSeparation: 110, nodeSpacing: 105 } },
+      physics: false,
+      nodes: { shape: 'box', margin: 8, font: { size: 12, color: '#ffffff' }, borderWidth: 0 },
+      edges: { arrows: { to: { enabled: true, scaleFactor: .45 } }, color: '#aab8b5', width: .7, smooth: { type: 'cubicBezier' } },
+      interaction: { hover: true, navigationButtons: true, keyboard: true }
+    };
+    new vis.Network(document.getElementById('graph'), { nodes, edges }, options);
+  </script>
+</body>
+</html>

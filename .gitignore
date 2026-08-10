@@ -1,0 +1,8 @@
+/.lake/
+/docbuild/.lake/
+/verification/.lake/
+/.cache/
+*.olean
+*.ilean
+*.trace
+
