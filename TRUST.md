@@ -5,7 +5,7 @@ Most advertised results depend, as reported by Lean, only on `propext`,
 `Classical.choice`, and `Quot.sound`.
 
 The first/last-four coefficient theorem uses `bv_decide` in
-`OpConjecture/Combinatorics/NormalizedFourVertexLadderClassification.lean`
+`QuotientSubmoduleEquidistribution/Combinatorics/NormalizedFourVertexLadderClassification.lean`
 to check finite bit-vector classifiers.  In Lean 4.32, `bv_decide` asks a SAT
 solver for an LRAT certificate and then checks the certificate by native
 evaluation.  Lean records each such native evaluation as a generated axiom

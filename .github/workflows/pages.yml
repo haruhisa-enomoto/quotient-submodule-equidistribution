@@ -35,7 +35,7 @@ jobs:
           MATHLIB_NO_CACHE_ON_UPDATE: "1"
         run: |
           lake update doc-gen4
-          lake build OpConjecture:docs
+          lake build QuotientSubmoduleEquidistribution:docs
       - name: Assemble site
         run: |
           mkdir -p _site/api

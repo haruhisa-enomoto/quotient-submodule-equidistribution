@@ -3,7 +3,7 @@
  "packages":
  [{"type": "path",
    "scope": "",
-   "name": "op_conjecture",
+   "name": "quotient_submodule_equidistribution",
    "manifestFile": "lake-manifest.json",
    "inherited": false,
    "dir": "..",
@@ -148,6 +148,6 @@
    "inputRev": "main",
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "op_conjecture_docbuild",
+ "name": "quotient_submodule_equidistribution_docbuild",
  "lakeDir": ".lake",
  "fixedToolchain": false}

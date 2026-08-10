@@ -5,7 +5,7 @@ graph.  From this directory:
 
 ```text
 MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
-lake build OpConjecture:docs
+lake build QuotientSubmoduleEquidistribution:docs
 ```
 
 The generated site is written to `.lake/build/doc`.  Serve it over HTTP; some

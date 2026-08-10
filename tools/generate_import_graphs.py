@@ -11,19 +11,19 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "website" / "import-graphs"
 TARGETS = {
-    "main-theorem.html": ("Main theorem", "OpConjecture.RepresentationTheory.MainTheoremEndpoint"),
-    "first-last-four.html": ("First and last four", "OpConjecture.RepresentationTheory.FirstLastFourEndpoint"),
-    "nakayama.html": ("Nakayama case", "OpConjecture.RepresentationTheory.NakayamaAlgebraProductFormula"),
-    "radical-square-zero.html": ("Radical-square-zero case", "OpConjecture.RadicalSquareZero.SeparatedDirectedInterface"),
-    "representation-directed.html": ("Representation-directed case", "OpConjecture.RepresentationDirected.AlgebraEndpoint"),
-    "generator-minimal.html": ("Generator-minimal dictionary", "OpConjecture.RepresentationTheory.IntrinsicNormalModules"),
+    "main-theorem.html": ("Main theorem", "QuotientSubmoduleEquidistribution.RepresentationTheory.MainTheoremEndpoint"),
+    "first-last-four.html": ("First and last four", "QuotientSubmoduleEquidistribution.RepresentationTheory.FirstLastFourEndpoint"),
+    "nakayama.html": ("Nakayama case", "QuotientSubmoduleEquidistribution.RepresentationTheory.NakayamaAlgebraProductFormula"),
+    "radical-square-zero.html": ("Radical-square-zero case", "QuotientSubmoduleEquidistribution.RadicalSquareZero.SeparatedDirectedInterface"),
+    "representation-directed.html": ("Representation-directed case", "QuotientSubmoduleEquidistribution.RepresentationDirected.AlgebraEndpoint"),
+    "generator-minimal.html": ("Generator-minimal dictionary", "QuotientSubmoduleEquidistribution.RepresentationTheory.IntrinsicNormalModules"),
 }
 IMPORT = re.compile(r"(?m)^\s*import\s+([^\s]+)")
 
 
 def module_map() -> dict[str, Path]:
-    result = {"OpConjecture": ROOT / "OpConjecture.lean", "MainResults": ROOT / "MainResults.lean"}
-    for path in (ROOT / "OpConjecture").rglob("*.lean"):
+    result = {"QuotientSubmoduleEquidistribution": ROOT / "QuotientSubmoduleEquidistribution.lean", "MainResults": ROOT / "MainResults.lean"}
+    for path in (ROOT / "QuotientSubmoduleEquidistribution").rglob("*.lean"):
         result[".".join(path.relative_to(ROOT).with_suffix("").parts)] = path
     return result
 
@@ -50,7 +50,7 @@ def closure(target: str, modules: dict[str, Path]) -> tuple[set[str], set[tuple[
 def color(module: str, target: str) -> str:
     if module == target:
         return "#9c5b27"
-    if ".Combinatorics." in module or module.startswith("OpConjecture.Combinatorics"):
+    if ".Combinatorics." in module or module.startswith("QuotientSubmoduleEquidistribution.Combinatorics"):
         return "#7667a8"
     if ".RepresentationDirected." in module:
         return "#2f6fa3"

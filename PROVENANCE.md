@@ -2,9 +2,7 @@
 
 This standalone repository was exported from the Mathlib-only formalization
 checkpoint
-`19395b97eb53e81370949d6c120a3475786bcc4d`, frozen internally on
-2026-08-10 under the tag
-`op-conjecture-mathlib-only-main-theorems-2026-08-10`.
+`19395b97eb53e81370949d6c120a3475786bcc4d`, frozen internally on 2026-08-10.
 
 The public artifact is intentionally narrower than the surrounding research
 workspace.  It contains the Lean source required for the manuscript's main

@@ -1,11 +1,11 @@
-import OpConjecture.RepresentationDirected.IyamaWordMeshDirectedEndpoint
-import OpConjecture.RepresentationTheory.FiniteDimensionalARNonvanishing
-import OpConjecture.RepresentationTheory.OppositeDuality
+import QuotientSubmoduleEquidistribution.RepresentationDirected.IyamaWordMeshDirectedEndpoint
+import QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteDimensionalARNonvanishing
+import QuotientSubmoduleEquidistribution.RepresentationTheory.OppositeDuality
 
 set_option autoImplicit false
 noncomputable section
 
-namespace OpConjecture
+namespace QuotientSubmoduleEquidistribution
 
 open RepresentationDirected
 
@@ -28,5 +28,5 @@ theorem rightRepresentationDirected_quotientSubmoduleEquidistribution
     RightQuotientSubmoduleEquidistribution K A h.1 := by
   sorry
 
-end OpConjecture
+end QuotientSubmoduleEquidistribution
 

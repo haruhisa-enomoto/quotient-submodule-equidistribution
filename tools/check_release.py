@@ -84,8 +84,8 @@ def lean_without_comments_and_strings(text: str) -> str:
 
 
 def production_lean_files() -> list[Path]:
-    files = sorted((ROOT / "OpConjecture").rglob("*.lean"))
-    files.extend(path for path in (ROOT / "OpConjecture.lean", ROOT / "MainResults.lean", ROOT / "Audit.lean") if path.exists())
+    files = sorted((ROOT / "QuotientSubmoduleEquidistribution").rglob("*.lean"))
+    files.extend(path for path in (ROOT / "QuotientSubmoduleEquidistribution.lean", ROOT / "MainResults.lean", ROOT / "Audit.lean") if path.exists())
     return files
 
 

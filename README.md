@@ -1,4 +1,4 @@
-# The OP conjecture in Lean
+# Quotient-submodule equidistribution in Lean
 
 This repository contains a Lean 4 formalization accompanying Haruhisa
 Enomoto's manuscript *An equidistribution conjecture for quotient-closed and
@@ -6,7 +6,7 @@ submodule-closed subcategories*.  It is a standalone Mathlib project: the
 production build has exactly one direct dependency, a fixed revision of
 Mathlib.
 
-The universal OP conjecture is **stated but remains open**.  The checked main
+The universal quotient-submodule equidistribution conjecture is **stated but remains open**.  The checked main
 theorem proves it for each representation-finite algebra in any of these four
 classes:
 
@@ -22,19 +22,19 @@ theorem is part of the release target.
 
 [`MainResults.lean`](MainResults.lean) is the short, stable map of the
 advertised declarations.  The paper-facing aggregation theorem is
-[`OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution`](OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean).
+[`QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution`](QuotientSubmoduleEquidistribution/RepresentationTheory/MainTheoremEndpoint.lean).
 Its four branches are exposed by
-`OpConjecture.MainTheoremEndpoint.MainTheoremWitness` in the same file.
+`QuotientSubmoduleEquidistribution.MainTheoremEndpoint.MainTheoremWitness` in the same file.
 
 | Result | Lean declaration | Source |
 | --- | --- | --- |
-| Main four-case theorem | `OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution` | [`MainTheoremEndpoint.lean`](OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean) |
-| First and last four coefficients | `OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four` | [`FirstLastFourEndpoint.lean`](OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean) |
-| At most nine indecomposables | `OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine` | [`FirstLastFourEndpoint.lean`](OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean) |
-| Nakayama case | `OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution` | [`NakayamaAlgebraProductFormula.lean`](OpConjecture/RepresentationTheory/NakayamaAlgebraProductFormula.lean) |
-| Radical-square-zero case | `OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero` | [`SeparatedDirectedInterface.lean`](OpConjecture/RadicalSquareZero/SeparatedDirectedInterface.lean) |
-| Representation-directed case | `OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution` | [`AlgebraEndpoint.lean`](OpConjecture/RepresentationDirected/AlgebraEndpoint.lean) |
-| Universal conjecture (statement only) | `OpConjecture.RightQuotientSubmoduleEquidistribution` | [`FiniteDimensionalAlgebra.lean`](OpConjecture/RepresentationTheory/FiniteDimensionalAlgebra.lean) |
+| Main four-case theorem | `QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution` | [`MainTheoremEndpoint.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/MainTheoremEndpoint.lean) |
+| First and last four coefficients | `QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four` | [`FirstLastFourEndpoint.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/FirstLastFourEndpoint.lean) |
+| At most nine indecomposables | `QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine` | [`FirstLastFourEndpoint.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/FirstLastFourEndpoint.lean) |
+| Nakayama case | `QuotientSubmoduleEquidistribution.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution` | [`NakayamaAlgebraProductFormula.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/NakayamaAlgebraProductFormula.lean) |
+| Radical-square-zero case | `QuotientSubmoduleEquidistribution.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero` | [`SeparatedDirectedInterface.lean`](QuotientSubmoduleEquidistribution/RadicalSquareZero/SeparatedDirectedInterface.lean) |
+| Representation-directed case | `QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution` | [`AlgebraEndpoint.lean`](QuotientSubmoduleEquidistribution/RepresentationDirected/AlgebraEndpoint.lean) |
+| Universal conjecture (statement only) | `QuotientSubmoduleEquidistribution.RightQuotientSubmoduleEquidistribution` | [`FiniteDimensionalAlgebra.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/FiniteDimensionalAlgebra.lean) |
 
 [`formalization.yaml`](formalization.yaml) gives the same map in a
 machine-readable form, following the target-oriented convention used by
@@ -57,7 +57,7 @@ lake env lean Audit.lean
 python3 tools/check_release.py
 ```
 
-`lake build OpConjecture` checks the full retained library.  The release check
+`lake build QuotientSubmoduleEquidistribution` checks the full retained library.  The release check
 also rejects production `sorry`/`admit`, project-local axioms, TauCeti imports
 or package dependencies, missing targets, and broken static-site links.
 

@@ -1,4 +1,4 @@
-name = "op_conjecture_docbuild"
+name = "quotient_submodule_equidistribution_docbuild"
 version = "0.1.0"
 packagesDir = "../.lake/packages"
 
@@ -8,6 +8,6 @@ git = "https://github.com/leanprover/doc-gen4.git"
 rev = "v4.32.0"
 
 [[require]]
-name = "op_conjecture"
+name = "quotient_submodule_equidistribution"
 path = ".."
 

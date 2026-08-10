@@ -1,10 +1,10 @@
-import OpConjecture.RepresentationTheory.FirstLastFourEndpoint
-import OpConjecture.RepresentationTheory.MainTheoremClassCases
+import QuotientSubmoduleEquidistribution.RepresentationTheory.FirstLastFourEndpoint
+import QuotientSubmoduleEquidistribution.RepresentationTheory.MainTheoremClassCases
 
 set_option autoImplicit false
 noncomputable section
 
-namespace OpConjecture.MainTheoremEndpoint
+namespace QuotientSubmoduleEquidistribution.MainTheoremEndpoint
 
 universe u
 
@@ -32,5 +32,5 @@ theorem rightQuotientSubmoduleEquidistribution
     RightQuotientSubmoduleEquidistribution K A hA := by
   sorry
 
-end OpConjecture.MainTheoremEndpoint
+end QuotientSubmoduleEquidistribution.MainTheoremEndpoint
 

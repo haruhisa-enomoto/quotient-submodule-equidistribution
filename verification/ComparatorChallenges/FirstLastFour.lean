@@ -1,15 +1,15 @@
-import OpConjecture.RepresentationTheory.CofiniteRooted
-import OpConjecture.RepresentationTheory.CofiniteTwoSimpleRank
-import OpConjecture.RepresentationTheory.Conjecture
-import OpConjecture.RepresentationTheory.FiniteDimensionalRecurrenceAssembly
-import OpConjecture.RepresentationTheory.FiniteTypeARTranslation
-import OpConjecture.RepresentationTheory.HereditaryThreeSimpleUnconditional
-import OpConjecture.RepresentationTheory.SimpleLevels
-import OpConjecture.RepresentationTheory.ThreeVertexFactorLadderEndpoint
+import QuotientSubmoduleEquidistribution.RepresentationTheory.CofiniteRooted
+import QuotientSubmoduleEquidistribution.RepresentationTheory.CofiniteTwoSimpleRank
+import QuotientSubmoduleEquidistribution.RepresentationTheory.Conjecture
+import QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteDimensionalRecurrenceAssembly
+import QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteTypeARTranslation
+import QuotientSubmoduleEquidistribution.RepresentationTheory.HereditaryThreeSimpleUnconditional
+import QuotientSubmoduleEquidistribution.RepresentationTheory.SimpleLevels
+import QuotientSubmoduleEquidistribution.RepresentationTheory.ThreeVertexFactorLadderEndpoint
 
 noncomputable section
 
-namespace OpConjecture.BottomLevels.FiniteDimensionalRecurrence
+namespace QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence
 
 universe u
 
@@ -30,10 +30,10 @@ theorem bottom_top_four :
 
 theorem equidistribution_of_card_le_nine
     (hcard : Nat.card B.Index ≤ 9) :
-    B.skeleton.QuotientSubmoduleEquidistribution := by
+    B.skeleton.HasQuotientSubmoduleEquidistribution := by
   sorry
 
 end FirstLastFourEndpoint
 
-end OpConjecture.BottomLevels.FiniteDimensionalRecurrence
+end QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence
 

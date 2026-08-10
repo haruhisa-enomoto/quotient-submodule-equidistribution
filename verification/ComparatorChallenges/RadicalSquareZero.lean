@@ -1,12 +1,12 @@
-import OpConjecture.RadicalSquareZero.AlgebraNormalFormAssembly
-import OpConjecture.RepresentationDirected.AlgebraEndpoint
-import OpConjecture.RepresentationTheory.SeparatedTriangularProjectiveBoundary
-import OpConjecture.RepresentationTheory.SeparatedTriangularOpposite
+import QuotientSubmoduleEquidistribution.RadicalSquareZero.AlgebraNormalFormAssembly
+import QuotientSubmoduleEquidistribution.RepresentationDirected.AlgebraEndpoint
+import QuotientSubmoduleEquidistribution.RepresentationTheory.SeparatedTriangularProjectiveBoundary
+import QuotientSubmoduleEquidistribution.RepresentationTheory.SeparatedTriangularOpposite
 
 set_option autoImplicit false
 noncomputable section
 
-namespace OpConjecture.RadicalSquareZero
+namespace QuotientSubmoduleEquidistribution.RadicalSquareZero
 
 universe u
 
@@ -19,5 +19,5 @@ theorem rightQuotientSubmoduleEquidistribution_of_squareZero
     RightQuotientSubmoduleEquidistribution K A hA := by
   sorry
 
-end OpConjecture.RadicalSquareZero
+end QuotientSubmoduleEquidistribution.RadicalSquareZero
 

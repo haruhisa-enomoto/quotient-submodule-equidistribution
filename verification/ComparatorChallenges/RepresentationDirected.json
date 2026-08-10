@@ -1,8 +1,8 @@
 {
   "challenge_module": "ComparatorChallenges.RepresentationDirected",
-  "solution_module": "OpConjecture.RepresentationDirected.AlgebraEndpoint",
+  "solution_module": "QuotientSubmoduleEquidistribution.RepresentationDirected.AlgebraEndpoint",
   "theorem_names": [
-    "OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution"
+    "QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution"
   ],
   "permitted_axioms": [
     "propext",

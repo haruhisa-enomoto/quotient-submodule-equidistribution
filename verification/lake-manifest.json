@@ -13,7 +13,7 @@
    "configFile": "lakefile.toml"},
   {"type": "path",
    "scope": "",
-   "name": "op_conjecture",
+   "name": "quotient_submodule_equidistribution",
    "manifestFile": "lake-manifest.json",
    "inherited": false,
    "dir": "..",
@@ -128,6 +128,6 @@
    "inputRev": "v4.32.0",
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "op_conjecture_verification",
+ "name": "quotient_submodule_equidistribution_verification",
  "lakeDir": ".lake",
  "fixedToolchain": false}

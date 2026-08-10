@@ -1,8 +1,8 @@
 {
   "challenge_module": "ComparatorChallenges.Nakayama",
-  "solution_module": "OpConjecture.RepresentationTheory.NakayamaAlgebraProductFormula",
+  "solution_module": "QuotientSubmoduleEquidistribution.RepresentationTheory.NakayamaAlgebraProductFormula",
   "theorem_names": [
-    "OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution"
+    "QuotientSubmoduleEquidistribution.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution"
   ],
   "permitted_axioms": [
     "propext",

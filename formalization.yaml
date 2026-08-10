@@ -1,6 +1,6 @@
 version: "v0.3"
 project:
-  name: "op-conjecture-lean"
+  name: "quotient-submodule-equidistribution"
   authors:
     - "Haruhisa Enomoto"
   license: "Apache-2.0"
@@ -16,7 +16,7 @@ sources:
 
 status:
   scope: >-
-    The universal OP conjecture is stated but remains open.  This artifact
+    The universal quotient-submodule equidistribution conjecture is stated but remains open.  This artifact
     proves the advertised four-case main theorem: at most nine indecomposable
     right modules, Nakayama algebras, radical-square-zero algebras, and
     representation-directed algebras.
@@ -28,36 +28,36 @@ status:
     - "Quot.sound"
     - "bv_decide-generated native certificate-checking axioms for the first/last-four branch; see TRUST.md"
   main_results:
-    - name: "Main four-case OP theorem"
-      declaration: "OpConjecture.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution"
-      file: "OpConjecture/RepresentationTheory/MainTheoremEndpoint.lean"
+    - name: "Main four-case theorem"
+      declaration: "QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution"
+      file: "QuotientSubmoduleEquidistribution/RepresentationTheory/MainTheoremEndpoint.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound", "bv_decide-generated native certificate-checking axioms; see TRUST.md"]
     - name: "First and last four coefficients"
-      declaration: "OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four"
-      file: "OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean"
+      declaration: "QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.bottom_top_four"
+      file: "QuotientSubmoduleEquidistribution/RepresentationTheory/FirstLastFourEndpoint.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound", "bv_decide-generated native certificate-checking axioms; see TRUST.md"]
     - name: "At most nine indecomposable modules"
-      declaration: "OpConjecture.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine"
-      file: "OpConjecture/RepresentationTheory/FirstLastFourEndpoint.lean"
+      declaration: "QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.FirstLastFourEndpoint.equidistribution_of_card_le_nine"
+      file: "QuotientSubmoduleEquidistribution/RepresentationTheory/FirstLastFourEndpoint.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound", "bv_decide-generated native certificate-checking axioms; see TRUST.md"]
     - name: "Nakayama case"
-      declaration: "OpConjecture.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution"
-      file: "OpConjecture/RepresentationTheory/NakayamaAlgebraProductFormula.lean"
+      declaration: "QuotientSubmoduleEquidistribution.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution"
+      file: "QuotientSubmoduleEquidistribution/RepresentationTheory/NakayamaAlgebraProductFormula.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       comparator_config: "verification/ComparatorChallenges/Nakayama.json"
     - name: "Radical-square-zero case"
-      declaration: "OpConjecture.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero"
-      file: "OpConjecture/RadicalSquareZero/SeparatedDirectedInterface.lean"
+      declaration: "QuotientSubmoduleEquidistribution.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero"
+      file: "QuotientSubmoduleEquidistribution/RadicalSquareZero/SeparatedDirectedInterface.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       comparator_config: "verification/ComparatorChallenges/RadicalSquareZero.json"
     - name: "Representation-directed case"
-      declaration: "OpConjecture.rightRepresentationDirected_quotientSubmoduleEquidistribution"
-      file: "OpConjecture/RepresentationDirected/AlgebraEndpoint.lean"
+      declaration: "QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution"
+      file: "QuotientSubmoduleEquidistribution/RepresentationDirected/AlgebraEndpoint.lean"
       sorry_count: 0
       axioms: ["propext", "Classical.choice", "Quot.sound"]
       comparator_config: "verification/ComparatorChallenges/RepresentationDirected.json"
