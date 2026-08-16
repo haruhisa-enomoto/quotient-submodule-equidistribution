@@ -2,8 +2,9 @@
 
 This repository contains a Lean 4 formalization accompanying Haruhisa
 Enomoto's manuscript *An equidistribution conjecture for quotient-closed and
-submodule-closed subcategories*.  The root Lake project has one direct
-dependency, a fixed Mathlib revision.
+submodule-closed subcategories*
+([arXiv:ARXIV_ID_PENDING](https://arxiv.org/abs/ARXIV_ID_PENDING)).  The root
+Lake project has one direct dependency, a fixed Mathlib revision.
 
 Let `q_i(A)` and `s_i(A)` be the numbers of quotient-closed and
 submodule-closed additive subcategories containing exactly `i`
