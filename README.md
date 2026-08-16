@@ -1,5 +1,7 @@
 # Quotient-submodule equidistribution in Lean
 
+**Website:** [Mathematical overview, theorem map, and Lean API documentation](https://haruhisa-enomoto.github.io/quotient-submodule-equidistribution/)
+
 This repository contains a Lean 4 formalization accompanying Haruhisa
 Enomoto's manuscript *An equidistribution conjecture for quotient-closed and
 submodule-closed subcategories*
