@@ -226,7 +226,11 @@ def check_release_files() -> None:
     for name in ("README.md", "LICENSE", "NOTICE", "PROVENANCE.md", "TRUST.md", "formalization.yaml"):
         if not (ROOT / name).is_file():
             fail(f"missing {name}")
-    for name in ("verification/README.md", "verification/four_vertex_patterns.py"):
+    for name in (
+        "verification/README.md",
+        "verification/four_vertex_patterns.py",
+        "tools/serve_site.py",
+    ):
         if not (ROOT / name).is_file():
             fail(f"missing {name}")
     verifier = ROOT / "verification" / "four_vertex_patterns.py"

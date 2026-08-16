@@ -102,6 +102,28 @@ python3 tools/check_release.py
 The final command checks the pinned direct dependency, production source,
 target metadata, verifier checksum, and static-site links.
 
+## Local website preview
+
+The local preview combines the hand-written pages with the generated doc-gen4
+API.  Build the API documentation once from the repository root:
+
+```text
+cd docbuild
+MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
+lake build QuotientSubmoduleEquidistribution:docs
+cd ..
+```
+
+Then run:
+
+```text
+python3 tools/serve_site.py
+```
+
+Open `http://localhost:8000/`.  The preview is assembled in a temporary
+directory, so stopping the server with `Ctrl+C` leaves the repository
+unchanged.
+
 ## Checked source and axioms
 
 The production source contains no `sorry`, `admit`, or project-local `axiom`.
