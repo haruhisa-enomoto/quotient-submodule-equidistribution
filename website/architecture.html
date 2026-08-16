@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Code and verification architecture of the quotient-submodule equidistribution Lean repository.">
-  <title>Code map · Quotient-submodule equidistribution in Lean</title>
+  <meta name="description" content="Proof blueprint and verification architecture of the quotient-submodule equidistribution Lean repository.">
+  <title>Blueprint · Quotient-submodule equidistribution in Lean</title>
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
@@ -12,15 +12,15 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="index.html">Quotient-submodule equidistribution · Lean</a>
       <a href="results.html">Results</a>
-      <a href="architecture.html" aria-current="page">Code map</a>
+      <a href="architecture.html" aria-current="page">Blueprint</a>
       <a href="api/index.html">API docs</a>
       <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution">GitHub</a>
     </nav>
   </header>
   <main>
     <div class="eyebrow">Repository navigation</div>
-    <h1>Code and verification map</h1>
-    <p class="lead">The release has a small public surface over a large retained proof library. Start at the target map; descend into endpoint modules only for the branch you want to inspect.</p>
+    <h1>Proof and verification blueprint</h1>
+    <p class="lead">The release has a small public surface over a large retained proof library. Start at the target map; descend into endpoint modules or source-derived import graphs only for the branch you want to inspect.</p>
 
     <section aria-labelledby="entry-points">
       <h2 id="entry-points">Entry points</h2>
@@ -41,10 +41,18 @@
           <tr><td><code>RepresentationTheory/FirstLastFourEndpoint.lean</code></td><td>Assembles the technically detailed size/cosize-four coefficient theorem and the at-most-nine corollary.</td><td><a href="import-graphs/first-last-four.html">first/last four</a></td></tr>
           <tr><td><code>RepresentationTheory/NakayamaAlgebraProductFormula.lean</code></td><td>Conventional Nakayama hypothesis, automatic finiteness, polynomial equality, and lattice data.</td><td><a href="import-graphs/nakayama.html">Nakayama</a></td></tr>
           <tr><td><code>RadicalSquareZero/SeparatedDirectedInterface.lean</code></td><td>Separated-algebra transfer and classification-free directedness route.</td><td><a href="import-graphs/radical-square-zero.html">radical square zero</a></td></tr>
-          <tr><td><code>RepresentationDirected/AlgebraEndpoint.lean</code></td><td>Canonical AR word, profile, and equidistribution theorem.</td><td><a href="import-graphs/representation-directed.html">representation-directed</a></td></tr>
+          <tr><td><code>RepresentationDirected/AlgebraEndpoint.lean</code></td><td>Canonical AR word, literal factor-category mesh realization, profile, and equidistribution theorem.</td><td><a href="import-graphs/representation-directed.html">representation-directed</a></td></tr>
           <tr><td><code>RepresentationTheory/IntrinsicNormalModules.lean</code></td><td>Intrinsic generator-minimal and compact-closed structural dictionary.</td><td><a href="import-graphs/generator-minimal.html">generator-minimal</a></td></tr>
         </tbody>
       </table>
+    </section>
+
+    <section aria-labelledby="synchronized-routes">
+      <h2 id="synchronized-routes">Frozen-paper synchronization routes</h2>
+      <div class="grid">
+        <article class="card"><h3>Factor-category positivity</h3><p><code>IyamaFactorCategoryARWord.lean</code> connects selected positions, quotient tau-orbits, middle-term multiplicities, exact representable meshes, and literal quotient-Hom dimensions.</p><p><a href="import-graphs/factor-category.html">Open its import graph</a></p></article>
+        <article class="card"><h3>Finite convex intervals</h3><p><code>FiniteInterval.lean</code> and <code>ConvexStructure.lean</code> expose the finite-independent/compact-closed equivalence and deletion chains without assuming a finite ambient ground type.</p><p><a href="import-graphs/convex-interval.html">Open their import graph</a></p></article>
+      </div>
     </section>
 
     <section aria-labelledby="boundary">
@@ -63,7 +71,7 @@
     <section aria-labelledby="verification">
       <h2 id="verification">Verification layers</h2>
       <ol>
-        <li><strong>Kernel compilation:</strong> <code>lake build MainResults</code> checks all transitive proof terms required by the advertised results.</li>
+        <li><strong>Kernel compilation:</strong> <code>lake build MainResults</code> checks all transitive proof terms required by the advertised results and the synchronized paper-facing support declarations.</li>
         <li><strong>Source release checks:</strong> <code>tools/check_release.py</code> checks the direct dependency, forbidden production holes and axioms, target metadata, challenge configs, and static links.</li>
         <li><strong>Axiom report:</strong> <code>lake env lean Audit.lean</code> records each target's kernel-visible axiom set.</li>
         <li><strong>Independent target statements:</strong> the nested challenges restate result types without importing solution modules; strict Comparator configs cover the three standard-axiom class endpoints.</li>
@@ -84,6 +92,6 @@ lake build QuotientSubmoduleEquidistribution</code></pre>
       <p class="note">For performance, build the project in a native Linux/WSL directory rather than under a Windows-mounted path.</p>
     </section>
   </main>
-  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · <a href="results.html">Exact theorem map</a></footer>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · Frozen-paper synchronization 2026-08-16 · <a href="results.html">Exact theorem map</a></footer>
 </body>
 </html>

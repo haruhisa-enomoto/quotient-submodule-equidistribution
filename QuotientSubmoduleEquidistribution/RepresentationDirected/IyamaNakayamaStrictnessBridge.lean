@@ -32,6 +32,112 @@ variable {C : Type u} [Category.{v} C] [Preadditive C]
   [IsIdempotentComplete C]
 variable {Ind : Type w} [Fintype Ind]
 
+namespace FiniteTauCategoryData
+
+variable (T : FiniteTauCategoryData C Ind)
+
+/-- Iyama's right-additivity condition written directly on the chosen
+indecomposable skeleton of a finite tau-category.
+
+The first clause is positivity.  The mesh defect is nonnegative everywhere
+and vanishes at every nonprojective label, exactly as in the manuscript's
+definition (where the latter condition is written as `tau X != 0`). -/
+def IsPositiveRightAdditiveLabelWeight (weight : Ind → ℤ) : Prop :=
+  (∀ x : Ind, 0 < weight x) ∧
+    ∀ x : Ind,
+      0 ≤
+          (T.additiveObjectWeightOfLabelWeight weight).weight
+              (T.rightMesh (T.obj x)).X₁ -
+            (T.additiveObjectWeightOfLabelWeight weight).weight
+              (T.rightMesh (T.obj x)).X₂ +
+            (T.additiveObjectWeightOfLabelWeight weight).weight
+              (T.rightMesh (T.obj x)).X₃ ∧
+        (¬ T.IsProjective x →
+          (T.additiveObjectWeightOfLabelWeight weight).weight
+                (T.rightMesh (T.obj x)).X₁ -
+              (T.additiveObjectWeightOfLabelWeight weight).weight
+                (T.rightMesh (T.obj x)).X₂ +
+              (T.additiveObjectWeightOfLabelWeight weight).weight
+                (T.rightMesh (T.obj x)).X₃ = 0)
+
+/-- A positive right-additive function makes every first map of the chosen
+right tau-sequences monic.
+
+This is the literal finite-tau-category form of Iyama's strictness
+implication.  It is derived from the already formalized finite-ladder
+Nakayama extraction and contains no translation-quiver realization as an
+extra hypothesis. -/
+theorem mono_nuPlus_of_isPositiveRightAdditiveLabelWeight
+    (weight : Ind → ℤ)
+    (hweight : IsPositiveRightAdditiveLabelWeight T weight) :
+    ∀ x : Ind, Mono (T.nuPlus x) := by
+  let W : AdditiveObjectWeight C :=
+    T.additiveObjectWeightOfLabelWeight weight
+  have hEuler : W.IsRightMeshEulerOffProjectives T := by
+    apply W.isRightMeshEulerOffProjectives_of_obj
+    intro x hx
+    exact (hweight.2 x).2 hx
+  intro x
+  by_cases hx : T.IsProjective x
+  · exact hx.mono (T.nuPlus x)
+  · by_contra hmono
+    let X : T.Nonprojective := ⟨x, hx⟩
+    obtain ⟨y, hy, hpair⟩ :=
+      T.exists_nakayamaPair_of_not_mono_nuPlus
+        T.NakayamaPair T.hasMuMinusNakayamaExtraction X
+        (T.not_isZero_thetaPlus X) hmono
+    let Y : T.Nonprojective := ⟨y, hy⟩
+    have hxEuler : W.IsRightMeshEulerAt T (T.obj x) :=
+      hEuler (T.obj x)
+        ⟨1, fun _ ↦ x,
+          ⟨(biproductUniqueIso (fun _ : Fin 1 ↦ T.obj x)).symm⟩,
+          fun _ ↦ hx⟩
+    have hyEuler : W.IsRightMeshEulerAt T (T.obj y) :=
+      hEuler (T.obj y)
+        ⟨1, fun _ ↦ y,
+          ⟨(biproductUniqueIso (fun _ : Fin 1 ↦ T.obj y)).symm⟩,
+          fun _ ↦ hy⟩
+    have hxRight :
+        W.weight (T.rightMesh (T.obj x)).X₃ = weight x := by
+      calc
+        W.weight (T.rightMesh (T.obj x)).X₃ = W.weight (T.obj x) :=
+          W.iso_invariant ⟨T.rightTermIso (T.obj x)⟩
+        _ = weight x := T.additiveObjectWeightOfLabelWeight_obj weight x
+    have hyLeft :
+        W.weight (T.rightMesh (T.obj y)).X₁ =
+          weight (T.tauPlus Y) := by
+      calc
+        W.weight (T.rightMesh (T.obj y)).X₁ =
+            W.weight (T.obj (T.tauPlus Y)) :=
+          W.iso_invariant ⟨T.tauPlusIso Y⟩
+        _ = weight (T.tauPlus Y) :=
+          T.additiveObjectWeightOfLabelWeight_obj weight (T.tauPlus Y)
+    have hNu : W.morphismWeight (T.nuPlus x) = -weight x := by
+      dsimp only [AdditiveObjectWeight.IsRightMeshEulerAt] at hxEuler
+      dsimp only [AdditiveObjectWeight.morphismWeight]
+      rw [hxRight] at hxEuler
+      omega
+    have hMu :
+        W.morphismWeight (T.muPlus y) = weight (T.tauPlus Y) := by
+      dsimp only [AdditiveObjectWeight.IsRightMeshEulerAt] at hyEuler
+      dsimp only [AdditiveObjectWeight.morphismWeight]
+      rw [hyLeft] at hyEuler
+      omega
+    have hFirst :
+        W.morphismWeight (T.nuPlus x) =
+          W.morphismWeight (T.muMinus (T.tauPlus X)) :=
+      W.morphismWeight_eq_of_arrowIso (T.firstMapIso X)
+    have hLadder :
+        W.morphismWeight (T.muMinus (T.tauPlus X)) =
+          W.morphismWeight (T.muPlus y) :=
+      W.morphismWeight_muMinus_eq_muPlus_of_nakayamaPair_offProjectives
+        hEuler NakayamaLadder.hasNonprojectiveRightSupport hpair
+    have hEq : -weight x = weight (T.tauPlus Y) := by
+      rw [← hNu, hFirst, hLadder, hMu]
+    exact (by linarith [hweight.1 x, hweight.1 (T.tauPlus Y)] : False)
+
+end FiniteTauCategoryData
+
 namespace FiniteAdmissibleTranslationQuiver
 
 /-- Copies of labels prescribed by a valued right mesh. -/

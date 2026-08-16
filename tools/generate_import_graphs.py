@@ -17,6 +17,8 @@ TARGETS = {
     "radical-square-zero.html": ("Radical-square-zero case", "QuotientSubmoduleEquidistribution.RadicalSquareZero.SeparatedDirectedInterface"),
     "representation-directed.html": ("Representation-directed case", "QuotientSubmoduleEquidistribution.RepresentationDirected.AlgebraEndpoint"),
     "generator-minimal.html": ("Generator-minimal dictionary", "QuotientSubmoduleEquidistribution.RepresentationTheory.IntrinsicNormalModules"),
+    "factor-category.html": ("Factor-category principal positivity", "QuotientSubmoduleEquidistribution.RepresentationDirected.IyamaFactorCategoryARWord"),
+    "convex-interval.html": ("Finite convex intervals", "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure"),
 }
 IMPORT = re.compile(r"(?m)^\s*import\s+([^\s]+)")
 
@@ -116,4 +118,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

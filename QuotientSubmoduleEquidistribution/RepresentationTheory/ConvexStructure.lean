@@ -1,4 +1,4 @@
-import QuotientSubmoduleEquidistribution.ConvexGeometry.Structure
+import QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval
 import QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective
 import QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective
 
@@ -19,6 +19,19 @@ namespace QuotientSubmoduleEquidistribution.IndecomposableSkeleton
 
 variable {R : Type u} [Ring R] [IsNoetherianRing R]
   {ι : Type v} (σ : IndecomposableSkeleton.{u, v, w} R ι)
+
+/-- The module-theoretic finite interval chain from
+`cor:finite-quotient-interval-chain`.  Each recorded deletion is by a
+relative splitting projective of the current quotient-closed support. -/
+inductive QuotientFiniteIntervalDeletionChain
+    (σ : IndecomposableSkeleton.{u, v, w} R ι) (C : Set ι) :
+    Set ι → Prop
+  | refl : QuotientFiniteIntervalDeletionChain σ C C
+  | delete {D : Set ι} (x : ι) (hx : x ∈ D \ C)
+      (hsplit : σ.IsRelativeSplitProjective D x)
+      (hclosed : σ.qClosure.IsClosed (D \ {x}))
+      (tail : QuotientFiniteIntervalDeletionChain σ C (D \ {x})) :
+      QuotientFiniteIntervalDeletionChain σ C D
 
 /-- The relative split projective indecomposables which actually belong to
 the selected class. -/
@@ -208,6 +221,48 @@ theorem qClosure_finiteConvexConsequences_of_finiteDimensional
   QuotientSubmoduleEquidistribution.SetClosure.finiteConvexConsequences
     (qClosure_isAntiExchange_of_finiteDimensional (K := K) σ)
     (qClosure_isClosed_empty σ)
+
+/-- Literal arbitrary-ground finite quotient interval theorem: a finite
+difference of quotient-closed supports can be removed one splitting
+projective at a time. -/
+theorem qClosed_finiteIntervalDeletionChain_of_finiteDimensional
+    {K : Type*} [Field K] [Algebra K R]
+    [∀ i : ι, Module K (σ.obj i)]
+    [∀ i : ι, IsScalarTower K R (σ.obj i)]
+    [∀ i : ι, FiniteDimensional K (σ.obj i)]
+    {C D : Set ι} (hC : σ.qClosure.IsClosed C)
+    (hD : σ.qClosure.IsClosed D) (hCD : C ⊆ D)
+    (hDCfin : (D \ C).Finite) :
+    QuotientFiniteIntervalDeletionChain σ C D := by
+  letI : ∀ i : ι,
+      IsArtinianRing (Module.End R (σ.obj i)) :=
+    fun i ↦
+      QuotientSubmoduleEquidistribution.isArtinianRing_moduleEnd_of_finiteDimensional
+        (K := K) (B := R) (M := σ.obj i)
+  have habstract :
+      QuotientSubmoduleEquidistribution.SetClosure.FiniteIntervalDeletionChain σ.qClosure C D :=
+    QuotientSubmoduleEquidistribution.SetClosure.finiteIntervalDeletionChain
+      (qClosure_isFinitary σ) (qClosure_isAntiExchange σ)
+      hC hD hCD hDCfin
+  have refineChain : ∀ {T : Set ι}, σ.qClosure.IsClosed T →
+      QuotientSubmoduleEquidistribution.SetClosure.FiniteIntervalDeletionChain σ.qClosure C T →
+        QuotientFiniteIntervalDeletionChain σ C T := by
+    intro T hT hchain
+    revert hT
+    induction hchain with
+    | refl =>
+        intro
+        exact .refl
+    | @delete T x hx hclosed tail ih =>
+        intro hT
+        have hxextreme : x ∈ σ.qClosure.extremePoints T :=
+          (QuotientSubmoduleEquidistribution.SetClosure.mem_extremePoints_iff_isClosed_sdiff_singleton
+            hT hx.1).2 hclosed
+        have hxrelative : x ∈ σ.relativeSplitProjectives T := by
+          rw [← qExtremePoints_eq_relativeSplitProjectives σ]
+          exact hxextreme
+        exact .delete x hx hxrelative.2 hclosed (ih hclosed)
+  exact refineChain hD habstract
 
 /-- Finite submodule closure has the accessibility, one-point cover,
 cardinality-grading, and extreme-generation consequences of the paper. -/

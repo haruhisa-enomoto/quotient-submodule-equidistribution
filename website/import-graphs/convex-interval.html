@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finite convex intervals · import graph</title>
+  <script src="https://unpkg.com/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+  <style>
+    :root { font-family: Inter, system-ui, sans-serif; color: #172126; background: #f7f6f1; }
+    body { margin: 0; } header { padding: 1rem 1.3rem; border-bottom: 1px solid #d7dfdd; }
+    h1 { font: 500 1.55rem Georgia, serif; margin: 0 0 .25rem; } p { margin: .2rem 0; color: #53656d; }
+    a { color: #075854; } #graph { width: 100%; height: 78vh; background: white; border-bottom: 1px solid #d7dfdd; }
+    details { margin: 1rem 1.3rem 2rem; } code { font-family: ui-monospace, monospace; }
+    li { margin: .2rem 0; }
+  </style>
+</head>
+<body>
+  <header><h1>Finite convex intervals</h1><p>Project-only transitive import closure of <code>QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure</code>: 17 modules, 18 direct import edges. Drag to pan; scroll to zoom. <a href="../architecture.html">Back to code map</a>.</p></header>
+  <div id="graph" role="img" aria-label="Interactive Lean module import graph"></div>
+  <details><summary>Accessible module list</summary><ol><li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.Basic</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.ClosedSets</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.Compact</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.CompletelyJoinIrreducible</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.Finite</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval</code></li>
+<li><code>QuotientSubmoduleEquidistribution.ConvexGeometry.Structure</code></li>
+<li><code>QuotientSubmoduleEquidistribution.Foundation.RingTheory.KrullSchmidt.Indecomposable</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.EndomorphismRadical</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteType</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.SubmoduleAntiExchange</code></li>
+<li><code>QuotientSubmoduleEquidistribution.RepresentationTheory.Trace</code></li></ol></details>
+  <script>
+    const nodes = new vis.DataSet([{"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.Basic", "label": "Basic", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.Basic", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.ClosedSets", "label": "ClosedSets", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.ClosedSets", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.Compact", "label": "Compact", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.Compact", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.CompletelyJoinIrreducible", "label": "CompletelyJoinIrreducible", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.CompletelyJoinIrreducible", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.Finite", "label": "Finite", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.Finite", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval", "label": "FiniteInterval", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.ConvexGeometry.Structure", "label": "Structure", "title": "QuotientSubmoduleEquidistribution.ConvexGeometry.Structure", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.Foundation.RingTheory.KrullSchmidt.Indecomposable", "label": "Indecomposable", "title": "QuotientSubmoduleEquidistribution.Foundation.RingTheory.KrullSchmidt.Indecomposable", "color": "#718078"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange", "label": "AntiExchange", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure", "label": "ConvexStructure", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure", "color": "#9c5b27"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.EndomorphismRadical", "label": "EndomorphismRadical", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.EndomorphismRadical", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub", "label": "FacSub", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteType", "label": "FiniteType", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteType", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective", "label": "SplitInjective", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective", "label": "SplitProjective", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.SubmoduleAntiExchange", "label": "SubmoduleAntiExchange", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.SubmoduleAntiExchange", "color": "#087d78"}, {"id": "QuotientSubmoduleEquidistribution.RepresentationTheory.Trace", "label": "Trace", "title": "QuotientSubmoduleEquidistribution.RepresentationTheory.Trace", "color": "#087d78"}]);
+    const edges = new vis.DataSet([{"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.Basic", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.Finite"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.Basic", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.ClosedSets", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.CompletelyJoinIrreducible"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.Compact", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.Structure"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.CompletelyJoinIrreducible", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.Compact"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.Finite", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.ClosedSets"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure"}, {"from": "QuotientSubmoduleEquidistribution.ConvexGeometry.Structure", "to": "QuotientSubmoduleEquidistribution.ConvexGeometry.FiniteInterval"}, {"from": "QuotientSubmoduleEquidistribution.Foundation.RingTheory.KrullSchmidt.Indecomposable", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteType"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.SubmoduleAntiExchange"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.EndomorphismRadical", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.AntiExchange"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.Trace"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.FiniteType", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.FacSub"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitProjective", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.SubmoduleAntiExchange", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.SplitInjective"}, {"from": "QuotientSubmoduleEquidistribution.RepresentationTheory.Trace", "to": "QuotientSubmoduleEquidistribution.RepresentationTheory.EndomorphismRadical"}]);
+    const options = {
+      layout: { hierarchical: { enabled: true, direction: 'DU', sortMethod: 'directed', levelSeparation: 110, nodeSpacing: 105 } },
+      physics: false,
+      nodes: { shape: 'box', margin: 8, font: { size: 12, color: '#ffffff' }, borderWidth: 0 },
+      edges: { arrows: { to: { enabled: true, scaleFactor: .45 } }, color: '#aab8b5', width: .7, smooth: { type: 'cubicBezier' } },
+      interaction: { hover: true, navigationButtons: true, keyboard: true }
+    };
+    new vis.Network(document.getElementById('graph'), { nodes, edges }, options);
+  </script>
+</body>
+</html>

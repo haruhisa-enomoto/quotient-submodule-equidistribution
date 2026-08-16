@@ -36,6 +36,25 @@ Its four branches are exposed by
 | Representation-directed case | `QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution` | [`AlgebraEndpoint.lean`](QuotientSubmoduleEquidistribution/RepresentationDirected/AlgebraEndpoint.lean) |
 | Universal conjecture (statement only) | `QuotientSubmoduleEquidistribution.RightQuotientSubmoduleEquidistribution` | [`FiniteDimensionalAlgebra.lean`](QuotientSubmoduleEquidistribution/RepresentationTheory/FiniteDimensionalAlgebra.lean) |
 
+The representation-directed branch is synchronized with the manuscript's
+literal quotient-category proof. Its load-bearing strengthened identity is
+
+```text
+QuotientSubmoduleEquidistribution.RepresentationDirected.FactorARWord.
+  selectedWordMixedMultiplicityFor_eq_factorHomDimension_of_reduced
+```
+
+It identifies the selected mixed coordinate with the dimension of the actual
+ideal-quotient Hom space and proves its nonnegativity. The public reduced-word,
+profile, equidistribution, and Bruhat-polynomial endpoints construct this
+factor-category realization for both the source and opposite algebra; they do
+not accept a supplied mesh-exactness package.
+
+The exact convex-geometry interfaces added by the same frozen-paper audit are
+`SetClosure.finiteIndependentEquivCompactClosedSet`,
+`SetClosure.finiteIntervalDeletionChain`, and
+`IndecomposableSkeleton.qClosed_finiteIntervalDeletionChain_of_finiteDimensional`.
+
 [`formalization.yaml`](formalization.yaml) gives the same map in a
 machine-readable form, following the target-oriented convention used by
 OpenAI's `ten-proofs` repository.  [`Audit.lean`](Audit.lean) checks every
@@ -68,11 +87,15 @@ the production source contains no `sorry`, `admit`, or project-local `axiom`.
 The finite first/last-four classifiers use Lean 4.32's `bv_decide`, whose
 native LRAT-certificate checks appear as generated axioms and add the compiler
 and interpreter to the trusted base for that branch.  [`TRUST.md`](TRUST.md)
-records the exact scope; `Audit.lean` prints the generated names. The theorem
-signatures have also undergone a paper-interface audit. This is
-not a claim that an independent human has line-by-line audited every proof
-body.  In particular, the first/last-four development is exposed separately
-to make the most technical branch easy to inspect.
+records the exact scope; `Audit.lean` prints the generated names. The
+advertised theorem signatures and the frozen manuscript's load-bearing proof
+path have undergone a paper-interface audit. This is not a claim that an
+independent human has line-by-line audited every proof body. The website does
+not advertise the unused two-sided strictness packaging of the paper's general
+tau-category corollary; it exposes the exact right-sequence strictness and
+representable-Hom expansion consumed by the main theorem. In particular, the
+first/last-four development is exposed separately to make the most technical
+branch easy to inspect.
 
 Right modules are represented as finitely generated modules over `Aᵐᵒᵖ`.
 The main theorem assumes a field `K`, `IsAlgClosed K`, a finite-dimensional
@@ -87,10 +110,13 @@ reading declarations but is not assumed by the website.
 ## Documentation
 
 The hand-written site lives in [`website`](website/) and is ready for GitHub
-Pages.  API documentation is generated with doc-gen4 from the isolated
-[`docbuild`](docbuild/) project, so documentation tooling does not become a
-production dependency. The site also links source-derived, project-only
-interactive import graphs for the main theorem and each principal branch.
+Pages. It contains direct theorem/source links and source-derived interactive
+import graphs, including dedicated views of the factor-category proof and the
+finite convex-interval interfaces. API documentation is generated with
+doc-gen4 from the isolated [`docbuild`](docbuild/) project, so documentation
+tooling does not become a production dependency. The site also links
+source-derived, project-only interactive import graphs for the main theorem
+and each principal branch.
 Automatic Pages deployment is skipped while the repository is private; after
 making it public, run the `Pages` workflow once from the Actions tab.  Later
 pushes to `main` deploy automatically.

@@ -20,6 +20,8 @@ EXPECTED_GRAPHS = {
     "radical-square-zero.html",
     "representation-directed.html",
     "generator-minimal.html",
+    "factor-category.html",
+    "convex-interval.html",
 }
 
 

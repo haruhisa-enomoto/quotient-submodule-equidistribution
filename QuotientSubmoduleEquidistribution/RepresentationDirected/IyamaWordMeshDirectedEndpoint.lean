@@ -1,13 +1,13 @@
 import QuotientSubmoduleEquidistribution.RepresentationDirected.ARWordOppositeDirectedProfile
 import QuotientSubmoduleEquidistribution.RepresentationDirected.IyamaWordMeshPreStrictRealization
+import QuotientSubmoduleEquidistribution.RepresentationDirected.IyamaFactorCategoryARWord
 
 /-!
 # The unconditional representation-directed word profile
 
-This file composes the abstract word-mesh realization with directed sorting
-and opposite-word duality.  It removes the final uniform mesh-exactness
-hypotheses from the representation-directed profile and equidistribution
-theorems.
+This file composes mesh realizations with directed sorting and opposite-word
+duality.  It retains the abstract word-mesh endpoint and also supplies the
+literal ideal-quotient endpoint used by finite-dimensional algebras.
 
 No concrete algebra, quiver presentation, module enumeration, or module
 classification is used.
@@ -18,7 +18,6 @@ noncomputable section
 
 namespace QuotientSubmoduleEquidistribution.RepresentationDirected.IyamaMesh.WordMesh.DirectedEndpoint
 
-open QuotientSubmoduleEquidistribution.RepresentationDirected.FixedWord
 open QuotientSubmoduleEquidistribution.RepresentationDirected
 open QuotientSubmoduleEquidistribution.RepresentationDirected.ARWordDuality
 open QuotientSubmoduleEquidistribution.RepresentationDirected.DirectedAROrbit
@@ -46,6 +45,35 @@ theorem hasUniformMeshExactnessFor
     HasUniformMeshExactnessFor sigma H T E := by
   exact MeshExactness.uniformSelectedSegmentMeshInverseNonnegative _ _
     (uniformSelectedSegmentRepresentableMeshExactness (K := F) _ _)
+
+/-- For the canonical finite-dimensional Auslander--Reiten data, uniform
+mesh nonnegativity is supplied by the literal quotient tau-categories and
+their evaluated representable mesh complexes. -/
+theorem hasUniformFactorCategoryMeshExactnessFor
+    (K R : Type uR) [Field K] [IsAlgClosed K]
+    [Ring R] [Algebra K R] [FiniteDimensional K R]
+    [IsNoetherianRing R]
+    {I : Type uI} [Fintype I]
+    (sigma : IndecomposableSkeleton.{uR, uI, uR} R I)
+    (H : HasAcyclicNonzeroNonisomorphisms sigma)
+    (E : DirectedOrderChoice sigma) :
+    HasUniformMeshExactnessFor sigma H
+      (sigma.finiteDimensionalARTranslationData K R) E := by
+  intro D a _ weight hweight M hM
+  let T := sigma.finiteDimensionalARTranslationData K R
+  let Q := DirectedAROrbit.OrderedARWord.wordFor sigma H T E
+  let C := rowRestrictedOmissions D a
+  have hRuns : ARWord.HasOnlyBoundaryRepeatedRuns
+      (DirectedAROrbit.OrderedARWord.orbitGraph sigma H T) Q :=
+    DirectedAROrbit.OrderedARWord.wordFor_hasOnlyBoundaryRepeatedRuns
+      sigma H T E
+  let Exact :=
+    FactorARWord.factorWordRepresentableMeshExactnessData
+      (K := K) (R := R) sigma H E C hRuns weight hweight
+  exact MeshExactness.recurrenceSolution_nonnegative
+    (ARWord.SelectedSegments.segmentGraph
+      (DirectedAROrbit.OrderedARWord.orbitGraph sigma H T) Q C)
+    (ARWord.SelectedSegments.segmentWord Q C) Exact M hM
 
 /-! ## The profile and equidistribution endpoints -/
 

@@ -46,6 +46,17 @@ structure RepresentableMeshExactnessData
     SatisfiesWordMeshInverseRecurrence G Q
       (fun a x ↦ (homDimension a x : ℤ))
 
+/-- Any integral inverse-mesh solution is the literal Hom-dimension matrix
+carried by the representable mesh-exactness data. -/
+theorem recurrenceSolution_eq_homDimension
+    (G : SimpleGraph L) (Q : List L)
+    (E : RepresentableMeshExactnessData G Q)
+    (M : Fin Q.length → Fin Q.length → ℤ)
+    (hM : SatisfiesWordMeshInverseRecurrence G Q M) :
+    M = fun a x ↦ (E.homDimension a x : ℤ) :=
+  satisfiesWordMeshInverseRecurrence_unique
+    G Q hM E.exact_recurrence
+
 /-- Exact representable mesh complexes give the nonnegative solution of the
 word mesh inverse recurrence. -/
 theorem recurrenceSolution_nonnegative
@@ -54,9 +65,7 @@ theorem recurrenceSolution_nonnegative
     (M : Fin Q.length → Fin Q.length → ℤ)
     (hM : SatisfiesWordMeshInverseRecurrence G Q M) :
     ∀ a x, 0 ≤ M a x := by
-  have hEq : M = fun a x ↦ (E.homDimension a x : ℤ) :=
-    satisfiesWordMeshInverseRecurrence_unique
-      G Q hM E.exact_recurrence
+  have hEq := recurrenceSolution_eq_homDimension G Q E M hM
   intro a x
   rw [hEq]
   exact Int.natCast_nonneg (E.homDimension a x)
@@ -64,10 +73,10 @@ theorem recurrenceSolution_nonnegative
 /-- The exact literature boundary used in the manuscript.
 
 For a boundary-run word, a positive right-additive function is required to
-produce the Hom-dimension data of exact representable mesh complexes.  Iyama's
-finite translation-quiver strictness theorem supplies this predicate
-mathematically; its tau-category proof is not part of the current Lean
-dependencies. -/
+produce the Hom-dimension data of exact representable mesh complexes.  The
+literal quotient tau-category implementation used by the algebra endpoint is
+constructed in `IyamaFactorCategoryARWord`; the abstract interface remains
+useful for other word realizations. -/
 def PositiveRightAdditiveHasRepresentableMeshExactness
     (G : SimpleGraph L) (Q : List L) : Prop :=
   ARWord.HasOnlyBoundaryRepeatedRuns G Q →

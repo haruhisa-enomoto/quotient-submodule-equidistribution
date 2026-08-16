@@ -71,7 +71,8 @@ theorem rightRepresentationDirectedWord_isReduced
   let E := DirectedOrderChoice.chosen sigma h.2
   exact DirectedSorting.orderedARWordFor_isReduced_of_meshExactness
     (K := K) (R := Aᵐᵒᵖ) sigma h.2 T E
-    ((hasUniformMeshExactnessFor K sigma h.2 T E) Finset.univ)
+    ((hasUniformFactorCategoryMeshExactnessFor
+      K Aᵐᵒᵖ sigma h.2 E) Finset.univ)
 
 /-- The complete Bruhat-interval parametrization in the
 representation-directed theorem, specialized to the canonical module
@@ -127,9 +128,19 @@ noncomputable def rightRepresentationDirectedProfile
     Fintype.ofFinite _
   let Tsigma := sigma.finiteDimensionalARTranslationData K Aᵐᵒᵖ
   let Ttau := tau.finiteDimensionalARTranslationData K (Aᵐᵒᵖ)ᵐᵒᵖ
-  exact explicitProfileParametrizationOfDirected
-    (FSource := K) (FTarget := K)
-    sigma tau Bdual h.2 Tsigma Ttau
+  let Htau := RepresentationDirected.DualDirectedOrder.dual_hasAcyclicNonzeroNonisomorphisms
+    sigma tau Bdual.backward h.2
+  let E := DirectedOrderChoice.chosen sigma h.2
+  exact
+    RepresentationDirected.OppositeDirectedProfile.explicitProfileParametrization_of_explicitOrderMeshExactness
+      (KSource := K) (KTarget := K)
+      sigma tau Bdual h.2 Htau Tsigma Ttau E
+      (hasUniformFactorCategoryMeshExactnessFor
+        K Aᵐᵒᵖ sigma h.2 E)
+      (hasUniformFactorCategoryMeshExactnessFor
+        K (Aᵐᵒᵖ)ᵐᵒᵖ tau Htau
+          (RepresentationDirected.ARWordDuality.oppositeOrderChoice
+            sigma tau Bdual E))
 
 /-- The paper's representation-directed class theorem, stated directly for
 the canonical indecomposable isomorphism classes of a finite-dimensional
@@ -163,9 +174,19 @@ theorem rightRepresentationDirected_quotientSubmoduleEquidistribution
     Fintype.ofFinite _
   let Tsigma := sigma.finiteDimensionalARTranslationData K Aᵐᵒᵖ
   let Ttau := tau.finiteDimensionalARTranslationData K (Aᵐᵒᵖ)ᵐᵒᵖ
-  exact quotientSubmoduleEquidistribution_of_directed
-    (FSource := K) (FTarget := K)
-    sigma tau Bdual h.2 Tsigma Ttau
+  let Htau := RepresentationDirected.DualDirectedOrder.dual_hasAcyclicNonzeroNonisomorphisms
+    sigma tau Bdual.backward h.2
+  let E := DirectedOrderChoice.chosen sigma h.2
+  exact
+    RepresentationDirected.OppositeDirectedProfile.quotientSubmoduleEquidistribution_of_explicitOrderMeshExactness
+      (KSource := K) (KTarget := K)
+      sigma tau Bdual h.2 Htau Tsigma Ttau E
+      (hasUniformFactorCategoryMeshExactnessFor
+        K Aᵐᵒᵖ sigma h.2 E)
+      (hasUniformFactorCategoryMeshExactnessFor
+        K (Aᵐᵒᵖ)ᵐᵒᵖ tau Htau
+          (RepresentationDirected.ARWordDuality.oppositeOrderChoice
+            sigma tau Bdual E))
 
 /-- The exact common polynomial in the representation-directed theorem is
 the reverse Coxeter-length polynomial of the principal Bruhat interval below
@@ -209,7 +230,9 @@ theorem rightRepresentationDirected_levelPolynomials_eq_bruhat
   let Q := OrderedARWord.wordFor sigma h.2 T E
   let hReduced : IsReduced G Q :=
     rightRepresentationDirectedWord_isReduced K A h
-  have hMesh := hasUniformMeshExactnessFor K sigma h.2 T E
+  have hMesh :=
+    hasUniformFactorCategoryMeshExactnessFor
+      K Aᵐᵒᵖ sigma h.2 E
   have hSort :=
     OrbitGraphDuality.hasLocalClosureCorrespondence_wordFor
       (KField := K) sigma h.2 T E hMesh

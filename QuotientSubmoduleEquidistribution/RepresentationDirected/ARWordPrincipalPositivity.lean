@@ -442,7 +442,7 @@ theorem wordMixedMultiplicity_nonnegative_on_selected_of_meshExactness
 
 /-- Selected rows and columns satisfy the segment-word inverse recurrence
 for every explicit directed order. -/
-private theorem selectedWordMixedMultiplicityFor_satisfiesWordMeshInverseRecurrence
+theorem selectedWordMixedMultiplicityFor_satisfiesWordMeshInverseRecurrence
     (H : HasAcyclicNonzeroNonisomorphisms sigma)
     (T : sigma.FiniteARTranslationData)
     (E : DirectedOrderChoice sigma)

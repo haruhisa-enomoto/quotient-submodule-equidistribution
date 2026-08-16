@@ -14,7 +14,7 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="index.html">Quotient-submodule equidistribution · Lean</a>
       <a href="results.html" aria-current="page">Results</a>
-      <a href="architecture.html">Code map</a>
+      <a href="architecture.html">Blueprint</a>
       <a href="api/index.html">API docs</a>
       <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution">GitHub</a>
     </nav>
@@ -22,7 +22,7 @@
   <main>
     <div class="eyebrow">Mathematics ↔ declarations</div>
     <h1>Exact theorem map</h1>
-    <p class="lead">These are the stable declarations a reader should inspect. The fully qualified names are also checked by <code>MainResults.lean</code>, recorded in <code>formalization.yaml</code>, and audited by <code>Audit.lean</code>.</p>
+    <p class="lead">These are the stable declarations a reader should inspect. The fully qualified names are checked by <code>MainResults.lean</code>, recorded in <code>formalization.yaml</code>, and audited by <code>Audit.lean</code>. The representation-directed route matches the frozen 2026-08-16 manuscript proof.</p>
 
     <section aria-labelledby="setup">
       <h2 id="setup">Common setup</h2>
@@ -43,7 +43,8 @@ QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEqui
     <section aria-labelledby="boundary-result">
       <h2 id="boundary-result">First and last four coefficients</h2>
       <p>For every finite-dimensional algebra node $B$, Lean proves</p>
-      <div class="math-panel">$$q_i(B)=s_i(B)\quad(0\le i\le4),\qquad q_{n-i}(B)=s_{n-i}(B)\quad(0\le i\le4),$$<p>where $n$ is the number of indecomposable labels. If $n\le9$, those two ranges cover all degrees and give full equidistribution.</p></div>
+      <div class="math-panel">$$q_i(B)=s_i(B)\quad(0\le i\le4),\qquad q_{n-i}(B)=s_{n-i}(B)\quad(0\le i\le4).$$</div>
+      <p>Here $n$ is the number of indecomposable labels. If $n\le9$, those two ranges cover all degrees and give full equidistribution.</p>
       <pre><code>QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
   FirstLastFourEndpoint.bottom_top_four
 QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
@@ -63,6 +64,16 @@ QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
       </table>
     </section>
 
+    <section aria-labelledby="factor-category-proof">
+      <h2 id="factor-category-proof">The literal factor-category bridge</h2>
+      <p>For a reduced selected subword, the formalization identifies the mixed coordinate with the dimension of the actual Hom space in the ideal quotient:</p>
+      <div class="math-panel">$$\mu_D(a,x)=\dim_K\bigl((\operatorname{mod}A)/[\mathcal C_D]\bigr)(X_a,X_x)\ge 0.$$</div>
+      <pre><code>QuotientSubmoduleEquidistribution.RepresentationDirected.FactorARWord.
+  selectedWordMixedMultiplicityFor_eq_factorHomDimension_of_reduced</code></pre>
+      <p>The construction identifies selected word positions with surviving quotient indecomposables, matches quotient translation and middle summands with previous and middle word positions—including multiplicities—and evaluates exact right tau-sequences on representable Hom functors. The algebra endpoint constructs this data for both the source and opposite algebra.</p>
+      <p><a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/QuotientSubmoduleEquidistribution/RepresentationDirected/IyamaFactorCategoryARWord.lean">Source</a> · <a href="api/QuotientSubmoduleEquidistribution/RepresentationDirected/IyamaFactorCategoryARWord.html">API</a> · <a href="import-graphs/factor-category.html">Import graph</a></p>
+    </section>
+
     <section aria-labelledby="structural">
       <h2 id="structural">Generator and compact-closure dictionary</h2>
       <p>The retained library also formalizes the structural bridge used to express the paper's generator-minimal classification intrinsically. The principal navigation points are:</p>
@@ -71,16 +82,19 @@ QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
         <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.intrinsicBasicNormalIsoClassEquivCompactClosed</code></li>
         <li><code>QuotientSubmoduleEquidistribution.rightModule_compact_iff_functoriallyFinite</code></li>
         <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.qCompact_isMinimalGenerator_iff_eq_relativeSplitProjectives</code></li>
+        <li><code>QuotientSubmoduleEquidistribution.SetClosure.finiteIndependentEquivCompactClosedSet</code></li>
+        <li><code>QuotientSubmoduleEquidistribution.SetClosure.finiteIntervalDeletionChain</code></li>
+        <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.qClosed_finiteIntervalDeletionChain_of_finiteDimensional</code></li>
       </ul>
-      <p><a href="import-graphs/generator-minimal.html">Open the project-only import graph</a>.</p>
+      <p><a href="import-graphs/generator-minimal.html">Generator-minimal import graph</a> · <a href="import-graphs/convex-interval.html">Finite convex-interval import graph</a></p>
     </section>
 
     <section aria-labelledby="evidence">
       <h2 id="evidence">What the status means</h2>
       <p>All production declarations compile with the pinned toolchain and Mathlib revision, without source-level project axioms, <code>sorry</code>, or <code>admit</code>. Kernel-visible axiom output is generated from <code>Audit.lean</code>. The first/last-four classifier uses native <code>bv_decide</code> LRAT-certificate checks, so Lean reports generated native axioms and the compiler/interpreter are trusted for that branch. The three standalone structural-class endpoints report only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>
-      <p class="note">This establishes compiler checking and exact theorem-interface coverage. It does not by itself constitute an independent line-by-line mathematical audit of every proof body.</p>
+      <p class="note">This establishes compiler checking of the advertised endpoints and the frozen manuscript's load-bearing proof path. It does not by itself constitute an independent line-by-line mathematical audit of every proof body. The site exposes the right-sequence strictness and representable-Hom expansion used by the main theorem; it does not separately advertise the unused two-sided strictness packaging of the general tau-category corollary.</p>
     </section>
   </main>
-  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · <a href="index.html">Project overview</a></footer>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · Frozen-paper synchronization 2026-08-16 · <a href="index.html">Project overview</a></footer>
 </body>
 </html>

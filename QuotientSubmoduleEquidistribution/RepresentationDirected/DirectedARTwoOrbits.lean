@@ -236,6 +236,153 @@ theorem irreducible_diagonal_backward
           arHeight sigma D (D.arTranslation sigma yp).1 + 1 at hyHeight
         omega
 
+/-! ## Terminal left rotation
+
+The manuscript proof of the two-orbit lemma rotates an irreducible arrow to
+the left until its target is projective.  The two alternatives below record
+the parity of the number of rotations without subtraction: an even number
+keeps the orientation of the two translation orbits, while an odd number
+reverses it and shifts the height equation by one.
+-/
+
+/-- Every irreducible arrow has a terminal left rotation whose target is
+projective. -/
+theorem exists_terminal_left_rotation
+    (H : HasAcyclicNonzeroNonisomorphisms sigma)
+    (D : ARData sigma) {x y : Iota}
+    (hxy : HasIrreducibleMorphism (sigma.obj x) (sigma.obj y)) :
+    ∃ a p : Iota, Projective (sigma.obj p) ∧
+      HasIrreducibleMorphism (sigma.obj a) (sigma.obj p) ∧
+      ((arOrbitLabel sigma H D a = arOrbitLabel sigma H D x ∧
+          arOrbitLabel sigma H D p = arOrbitLabel sigma H D y ∧
+          arHeight sigma D x + arHeight sigma D p =
+            arHeight sigma D y + arHeight sigma D a) ∨
+        (arOrbitLabel sigma H D a = arOrbitLabel sigma H D y ∧
+          arOrbitLabel sigma H D p = arOrbitLabel sigma H D x ∧
+          arHeight sigma D x + arHeight sigma D a + 1 =
+            arHeight sigma D y + arHeight sigma D p)) := by
+  induction hmeasure : arHeight sigma D x + arHeight sigma D y using
+      Nat.strong_induction_on generalizing x y with
+  | h n ih =>
+      subst n
+      by_cases hyProjective : Projective (sigma.obj y)
+      · refine ⟨x, y, hyProjective, hxy, Or.inl ⟨rfl, rfl, ?_⟩⟩
+        have hyHeight := arHeight_eq_zero_of_projective sigma D hyProjective
+        omega
+      · let yp : sigma.NonprojectiveLabel := ⟨y, hyProjective⟩
+        have hleft : HasIrreducibleMorphism
+            (sigma.obj (D.arTranslation sigma yp).1) (sigma.obj x) :=
+          (D.arTranslation_incidence sigma yp x).1 hxy
+        have hyHeight := arHeight_translation sigma H D yp
+        change arHeight sigma D y =
+          arHeight sigma D (D.arTranslation sigma yp).1 + 1 at hyHeight
+        have hmeasure' :
+            arHeight sigma D (D.arTranslation sigma yp).1 +
+                arHeight sigma D x <
+              arHeight sigma D x + arHeight sigma D y := by
+          omega
+        obtain ⟨a, p, hp, hap, hterminal⟩ :=
+          ih _ hmeasure' hleft rfl
+        refine ⟨a, p, hp, hap, ?_⟩
+        rcases hterminal with hsame | hreverse
+        · right
+          refine ⟨hsame.1.trans (arOrbitLabel_translation
+            sigma H D yp), hsame.2.1, ?_⟩
+          omega
+        · left
+          refine ⟨hreverse.1, hreverse.2.1.trans
+            (arOrbitLabel_translation sigma H D yp), ?_⟩
+          omega
+
+/-- Two terminal arrows cannot point in opposite directions between the same
+two translation orbits. -/
+theorem terminal_arrows_not_opposite
+    (H : HasAcyclicNonzeroNonisomorphisms sigma)
+    (D : ARData sigma) {a p b q : Iota}
+    (hp : Projective (sigma.obj p)) (hq : Projective (sigma.obj q))
+    (hap : HasIrreducibleMorphism (sigma.obj a) (sigma.obj p))
+    (hbq : HasIrreducibleMorphism (sigma.obj b) (sigma.obj q))
+    (haq : arOrbitLabel sigma H D a = arOrbitLabel sigma H D q)
+    (hpb : arOrbitLabel sigma H D p = arOrbitLabel sigma H D b) : False := by
+  letI := directedLinearOrder sigma H
+  let HO : DirectedHomOrder sigma :=
+    DirectedHomOrder.of_acyclicNonzeroNonisomorphisms sigma H
+  have hqHeight := arHeight_eq_zero_of_projective sigma D hq
+  have hpHeight := arHeight_eq_zero_of_projective sigma D hp
+  have hqa : Relation.ReflTransGen (ARStep sigma D) q a :=
+    arReach_of_arOrbitLabel_eq_of_arHeight_le sigma H D haq.symm (by omega)
+  have hpbReach : Relation.ReflTransGen (ARStep sigma D) p b :=
+    arReach_of_arOrbitLabel_eq_of_arHeight_le sigma H D hpb (by omega)
+  have hqp : q < p :=
+    ((arReach_le sigma H D hqa).trans_lt
+      (HO.lt_of_irreducible hap))
+  have hpq : p < q :=
+    ((arReach_le sigma H D hpbReach).trans_lt
+      (HO.lt_of_irreducible hbq))
+  exact (lt_asymm hqp hpq).elim
+
+/-- Terminal arrows with the same oriented pair of translation orbits have
+the same projective target and the same source. -/
+theorem terminal_arrows_eq_of_same_orbits
+    (H : HasAcyclicNonzeroNonisomorphisms sigma)
+    (D : ARData sigma) {a p b q : Iota}
+    (hp : Projective (sigma.obj p)) (hq : Projective (sigma.obj q))
+    (hap : HasIrreducibleMorphism (sigma.obj a) (sigma.obj p))
+    (hbq : HasIrreducibleMorphism (sigma.obj b) (sigma.obj q))
+    (hab : arOrbitLabel sigma H D a = arOrbitLabel sigma H D b)
+    (hpqOrbit : arOrbitLabel sigma H D p = arOrbitLabel sigma H D q) :
+    a = b ∧ p = q := by
+  have hpq : p = q := by
+    have hpSelf := arOrbitLabel_eq_self_of_projective sigma H D hp
+    have hqSelf := arOrbitLabel_eq_self_of_projective sigma H D hq
+    exact congrArg Subtype.val (hpSelf.symm.trans (hpqOrbit.trans hqSelf))
+  subst q
+  refine ⟨?_, rfl⟩
+  apply eq_of_arOrbitLabel_eq_of_arHeight_eq sigma H D hab
+  by_contra hheight
+  letI := directedLinearOrder sigma H
+  let HO : DirectedHomOrder sigma :=
+    DirectedHomOrder.of_acyclicNonzeroNonisomorphisms sigma H
+  rcases lt_or_gt_of_ne hheight with habHeight | hbaHeight
+  · have habNe : a ≠ b := fun habEq ↦ by subst b; omega
+    have habReach := arReach_of_arOrbitLabel_eq_of_arHeight_le
+      sigma H D hab habHeight.le
+    let an : sigma.NoninjectiveLabel :=
+      ⟨a, not_injective_of_arReach_of_ne sigma D habReach habNe⟩
+    have hpaSucc : HasIrreducibleMorphism (sigma.obj p)
+        (sigma.obj (arSuccessor sigma D an).1) :=
+      (arSuccessor_incidence sigma D an p).1 hap
+    have hsuccOrbit : arOrbitLabel sigma H D
+        (arSuccessor sigma D an).1 = arOrbitLabel sigma H D b :=
+      (arSuccessor_orbitLabel sigma H D an).trans hab
+    have hsuccHeight := arSuccessor_height sigma H D an
+    change arHeight sigma D (arSuccessor sigma D an).1 =
+      arHeight sigma D a + 1 at hsuccHeight
+    have hsuccBReach := arReach_of_arOrbitLabel_eq_of_arHeight_le
+      sigma H D hsuccOrbit (by omega)
+    have hpb : p < b := (HO.lt_of_irreducible hpaSucc).trans_le
+      (arReach_le sigma H D hsuccBReach)
+    exact (lt_asymm hpb (HO.lt_of_irreducible hbq)).elim
+  · have hbaNe : b ≠ a := fun hbaEq ↦ by subst b; omega
+    have hbaReach := arReach_of_arOrbitLabel_eq_of_arHeight_le
+      sigma H D hab.symm hbaHeight.le
+    let bn : sigma.NoninjectiveLabel :=
+      ⟨b, not_injective_of_arReach_of_ne sigma D hbaReach hbaNe⟩
+    have hpbSucc : HasIrreducibleMorphism (sigma.obj p)
+        (sigma.obj (arSuccessor sigma D bn).1) :=
+      (arSuccessor_incidence sigma D bn p).1 hbq
+    have hsuccOrbit : arOrbitLabel sigma H D
+        (arSuccessor sigma D bn).1 = arOrbitLabel sigma H D a :=
+      (arSuccessor_orbitLabel sigma H D bn).trans hab.symm
+    have hsuccHeight := arSuccessor_height sigma H D bn
+    change arHeight sigma D (arSuccessor sigma D bn).1 =
+      arHeight sigma D b + 1 at hsuccHeight
+    have hsuccAReach := arReach_of_arOrbitLabel_eq_of_arHeight_le
+      sigma H D hsuccOrbit (by omega)
+    have hpa : p < a := (HO.lt_of_irreducible hpbSucc).trans_le
+      (arReach_le sigma H D hsuccAReach)
+    exact (lt_asymm hpa (HO.lt_of_irreducible hap)).elim
+
 /-- A seed arrow fixes the cross-orbit height order on its forward side.
 The inequality is the subtraction-free form of
 `height x ≤ height y - (height v - height u)`. -/
@@ -431,20 +578,34 @@ theorem irreducible_same_orientation_iff_height_offset
     HasIrreducibleMorphism (sigma.obj x) (sigma.obj y) ↔
       arHeight sigma D x + arHeight sigma D v =
         arHeight sigma D y + arHeight sigma D u := by
-  letI := directedLinearOrder sigma H
-  let HO : DirectedHomOrder sigma :=
-    DirectedHomOrder.of_acyclicNonzeroNonisomorphisms sigma H
   constructor
   · intro hxy
-    apply Nat.le_antisymm
-    · by_contra hnot
-      have hyx := lt_of_seed_irreducible_of_cross_height_gt
-        sigma H D huv hxu hyv (by omega)
-      exact lt_asymm (HO.lt_of_irreducible hxy) hyx
-    · by_contra hnot
-      have hvu := lt_of_seed_irreducible_of_cross_height_gt
-        sigma H D hxy hxu.symm hyv.symm (by omega)
-      exact lt_asymm (HO.lt_of_irreducible huv) hvu
+    obtain ⟨a, p, hp, hap, hterminalUV⟩ :=
+      exists_terminal_left_rotation sigma H D huv
+    obtain ⟨b, q, hq, hbq, hterminalXY⟩ :=
+      exists_terminal_left_rotation sigma H D hxy
+    rcases hterminalUV with huvSame | huvReverse <;>
+      rcases hterminalXY with hxySame | hxyReverse
+    · obtain ⟨hab, hpq⟩ := terminal_arrows_eq_of_same_orbits
+        sigma H D hp hq hap hbq
+        (huvSame.1.trans (hxu.symm.trans hxySame.1.symm))
+        (huvSame.2.1.trans (hyv.symm.trans hxySame.2.1.symm))
+      subst b
+      subst q
+      omega
+    · exact (terminal_arrows_not_opposite sigma H D hp hq hap hbq
+        (huvSame.1.trans (hxu.symm.trans hxyReverse.2.1.symm))
+        (huvSame.2.1.trans (hyv.symm.trans hxyReverse.1.symm))).elim
+    · exact (terminal_arrows_not_opposite sigma H D hp hq hap hbq
+        (huvReverse.1.trans (hyv.symm.trans hxySame.2.1.symm))
+        (huvReverse.2.1.trans (hxu.symm.trans hxySame.1.symm))).elim
+    · obtain ⟨hab, hpq⟩ := terminal_arrows_eq_of_same_orbits
+        sigma H D hp hq hap hbq
+        (huvReverse.1.trans (hyv.symm.trans hxyReverse.1.symm))
+        (huvReverse.2.1.trans (hxu.symm.trans hxyReverse.2.1.symm))
+      subst b
+      subst q
+      omega
   · intro hoffset
     by_cases hux : arHeight sigma D u ≤ arHeight sigma D x
     · let n := arHeight sigma D x - arHeight sigma D u
