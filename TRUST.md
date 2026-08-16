@@ -1,8 +1,8 @@
 # Trust boundary
 
 The production source contains no `sorry`, `admit`, or source-level `axiom`.
-Most advertised results depend, as reported by Lean, only on `propext`,
-`Classical.choice`, and `Quot.sound`.
+`Audit.lean` reports `propext`, `Classical.choice`, and `Quot.sound` for every
+listed result except the first/last-four theorem and the results that use it.
 
 The first/last-four coefficient theorem uses `bv_decide` in
 `QuotientSubmoduleEquidistribution/Combinatorics/NormalizedFourVertexLadderClassification.lean`
@@ -20,13 +20,15 @@ Consequently this additional trust boundary affects:
 - `FirstLastFourEndpoint.equidistribution_of_card_le_nine`; and
 - the four-case aggregation theorem, through its at-most-nine branch.
 
-The standalone Nakayama, radical-square-zero, and representation-directed
-equidistribution endpoints report only the three standard axioms above.
+The axiom report separates the results as follows:
 
-The optional Comparator configurations are therefore supplied only for those
-three endpoints.  The main and first/last-four challenge modules still compile
-as independent statement specifications, but this release does not claim that
-their solutions pass Comparator's strict standard-axiom policy.  Replacing the
-native certificate checks by fully kernel-reduced proof terms would be a
-separate proof-engineering project, not a documentation-only change.
+| Results | Compiler-visible axioms |
+| --- | --- |
+| Nakayama, radical-square-zero, and representation-directed theorems | `propext`, `Classical.choice`, `Quot.sound` |
+| First/last-four theorem, at-most-nine theorem, and four-case theorem | the three axioms above and generated native `bv_decide` axioms |
 
+The nested verification project supplies strict Comparator configurations for
+the Nakayama, radical-square-zero, and representation-directed declarations.
+Its main-theorem and first/last-four challenge modules compile as separate
+statement specifications.  Their solutions have the larger axiom set recorded
+in the second row of the table.

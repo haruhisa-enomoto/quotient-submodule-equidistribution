@@ -35,9 +35,9 @@ inductive MainTheoremWitness : Prop where
       (h : IsRightRepresentationDirected K A)
 
 include K in
-/-- The paper-facing aggregation theorem.  Every nonformalized assumption
-appears explicitly in `MainTheoremWitness`; all four deductions are checked
-in Lean. -/
+/-- If `A` is right representation-finite and satisfies one of the four
+alternatives in `MainTheoremWitness`, then its quotient and submodule level
+polynomials are equal. -/
 theorem rightQuotientSubmoduleEquidistribution
     (hA : IsRightRepresentationFinite.{u, u, u} K A)
     (h : MainTheoremWitness K A) :

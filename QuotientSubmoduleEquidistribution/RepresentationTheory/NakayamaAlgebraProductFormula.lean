@@ -2,14 +2,14 @@ import QuotientSubmoduleEquidistribution.RepresentationTheory.NakayamaProductFor
 import QuotientSubmoduleEquidistribution.RepresentationTheory.SerialBoundaryTheorem
 
 /-!
-# The paper-facing Nakayama algebra theorem
+# The Nakayama algebra theorem
 
 The manuscript uses the conventional two-sided definition: every
 indecomposable projective and every indecomposable injective right module is
 uniserial.  The abstract serial-boundary theorem upgrades this condition to
 uniseriality of every indecomposable, without assuming representation-finite.
-The maintained Nakayama classification-free finiteness bridge and product
-formula then give the literal standalone theorem from the paper.
+The representation-finiteness theorem and product formula then give the
+quotient--submodule equidistribution theorem for Nakayama algebras.
 -/
 
 noncomputable section

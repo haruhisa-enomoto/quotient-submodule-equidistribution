@@ -872,9 +872,9 @@ theorem selectedWordMixedMultiplicityFor_eq_factorHomDimension
   rw [hDimension] at hEntry
   simpa only [T, Q, G] using hEntry
 
-/-- Literal form of the revised manuscript lemma: if the selected subword is
-reduced, then every selected mixed coordinate is the dimension of the
-corresponding Hom space in `(mod A)/[C_D]`, hence is nonnegative. -/
+/-- If the selected subword is reduced, then every selected mixed coordinate
+is the dimension of the corresponding Hom space in the ideal quotient
+`(mod A)/[C_D]`, and is therefore nonnegative. -/
 theorem selectedWordMixedMultiplicityFor_eq_factorHomDimension_of_reduced
     (H : HasAcyclicNonzeroNonisomorphisms sigma)
     (E : DirectedOrderChoice sigma)

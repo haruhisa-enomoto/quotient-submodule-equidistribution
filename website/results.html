@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Exact mathematical and Lean theorem map for the quotient-submodule equidistribution formalization.">
+  <meta name="description" content="Mathematical statements and Lean declarations for the quotient-submodule equidistribution formalization.">
   <title>Results · Quotient-submodule equidistribution in Lean</title>
   <link rel="stylesheet" href="assets/site.css">
   <script>window.MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
@@ -14,22 +14,22 @@
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="index.html">Quotient-submodule equidistribution · Lean</a>
       <a href="results.html" aria-current="page">Results</a>
-      <a href="architecture.html">Blueprint</a>
+      <a href="architecture.html">Proof structure</a>
       <a href="api/index.html">API docs</a>
       <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution">GitHub</a>
     </nav>
   </header>
   <main>
-    <div class="eyebrow">Mathematics ↔ declarations</div>
-    <h1>Exact theorem map</h1>
-    <p class="lead">These are the stable declarations a reader should inspect. The fully qualified names are checked by <code>MainResults.lean</code>, recorded in <code>formalization.yaml</code>, and audited by <code>Audit.lean</code>. The representation-directed route matches the frozen 2026-08-16 manuscript proof.</p>
+    <div class="eyebrow">Mathematical statements and Lean declarations</div>
+    <h1>Theorems formalized in Lean</h1>
+    <p class="lead"><code>MainResults.lean</code> checks the fully qualified names below, <code>formalization.yaml</code> records their source files, and <code>Audit.lean</code> prints their compiler-visible axioms.</p>
 
     <section aria-labelledby="setup">
       <h2 id="setup">Common setup</h2>
-      <p>For the paper-facing main theorem, $K$ is an algebraically closed field, $A$ is a finite-dimensional $K$-algebra, and the canonical isomorphism classes of indecomposable right $A$-modules are finite. A right module is encoded as a module over $A^{\mathrm{op}}$.</p>
-      <p>For each $i$, let $q_i$ count quotient-closed supports of cardinality $i$ and $s_i$ count submodule-closed supports of cardinality $i$. The conclusion is the polynomial, or equivalently levelwise, equality</p>
-      <div class="math-panel">$$\forall i,\ q_i=s_i \qquad\Longleftrightarrow\qquad \sum_i q_i t^i=\sum_i s_i t^i.$$</div>
-      <p>The universal proposition is <code>QuotientSubmoduleEquidistribution.RightQuotientSubmoduleEquidistribution</code>. It is defined and related to level counts, but not proved for every representation-finite algebra.</p>
+      <p>Let $K$ be an algebraically closed field and let $A$ be a representation-finite finite-dimensional $K$-algebra. Write $\mathcal L_Q^i(A)$ and $\mathcal L_S^i(A)$ for the quotient-closed and submodule-closed additive subcategories containing $i$ indecomposable isomorphism classes, respectively. Right $A$-modules are encoded as modules over $A^{\mathrm{op}}$.</p>
+      <p>Put $q_i(A)=|\mathcal L_Q^i(A)|$ and $s_i(A)=|\mathcal L_S^i(A)|$. Quotient-submodule equidistribution is the equality</p>
+      <div class="math-panel">$$q_i(A)=s_i(A)\ \text{for every }i, \qquad\text{equivalently}\qquad \sum_i q_i(A)t^i=\sum_i s_i(A)t^i.$$</div>
+      <p>The declaration <code>QuotientSubmoduleEquidistribution.RightQuotientSubmoduleEquidistribution</code> expresses this proposition. The proposition remains open for a general representation-finite algebra.</p>
     </section>
 
     <section aria-labelledby="main-result">
@@ -42,9 +42,9 @@ QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEqui
 
     <section aria-labelledby="boundary-result">
       <h2 id="boundary-result">First and last four coefficients</h2>
-      <p>For every finite-dimensional algebra node $B$, Lean proves</p>
-      <div class="math-panel">$$q_i(B)=s_i(B)\quad(0\le i\le4),\qquad q_{n-i}(B)=s_{n-i}(B)\quad(0\le i\le4).$$</div>
-      <p>Here $n$ is the number of indecomposable labels. If $n\le9$, those two ranges cover all degrees and give full equidistribution.</p>
+      <p>Put $N=|\operatorname{ind} A|$. Lean proves</p>
+      <div class="math-panel">$$q_i(A)=s_i(A)\quad(0\le i\le4),\qquad q_{N-i}(A)=s_{N-i}(A)\quad(0\le i\le4).$$</div>
+      <p>If $N\le9$, the two ranges contain every degree, so all coefficients agree.</p>
       <pre><code>QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
   FirstLastFourEndpoint.bottom_top_four
 QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
@@ -57,9 +57,9 @@ QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
       <table>
         <thead><tr><th>Case</th><th>Formal hypothesis</th><th>Conclusion declaration</th><th>Inspect</th></tr></thead>
         <tbody>
-          <tr><td>Nakayama</td><td>Each indecomposable projective and injective right module is uniserial. This case does not require algebraic closedness.</td><td><code>QuotientSubmoduleEquidistribution.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution</code></td><td><a href="api/QuotientSubmoduleEquidistribution/RepresentationTheory/NakayamaAlgebraProductFormula.html">API</a> · <a href="import-graphs/nakayama.html">graph</a></td></tr>
+          <tr><td>Nakayama</td><td>Each indecomposable projective and injective right module is uniserial. The standalone declaration is valid over an arbitrary field.</td><td><code>QuotientSubmoduleEquidistribution.NakayamaAlgebraProductFormula.rightQuotientSubmoduleEquidistribution</code></td><td><a href="api/QuotientSubmoduleEquidistribution/RepresentationTheory/NakayamaAlgebraProductFormula.html">API</a> · <a href="import-graphs/nakayama.html">graph</a></td></tr>
           <tr><td>Radical square zero</td><td>$(\operatorname{jac} A)^2=\bot$ together with the main theorem's representation-finiteness witness.</td><td><code>QuotientSubmoduleEquidistribution.RadicalSquareZero.rightQuotientSubmoduleEquidistribution_of_squareZero</code></td><td><a href="api/QuotientSubmoduleEquidistribution/RadicalSquareZero/SeparatedDirectedInterface.html">API</a> · <a href="import-graphs/radical-square-zero.html">graph</a></td></tr>
-          <tr><td>Representation-directed</td><td>Finitely many indecomposables and no cycle of nonzero nonisomorphisms in the canonical skeleton.</td><td><code>QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution</code></td><td><a href="api/QuotientSubmoduleEquidistribution/RepresentationDirected/AlgebraEndpoint.html">API</a> · <a href="import-graphs/representation-directed.html">graph</a></td></tr>
+          <tr><td>Representation-directed</td><td>There are finitely many indecomposable right modules and no cycle $X_0\to X_1\to\cdots\to X_m=X_0$ in which every map is a nonzero nonisomorphism.</td><td><code>QuotientSubmoduleEquidistribution.rightRepresentationDirected_quotientSubmoduleEquidistribution</code></td><td><a href="api/QuotientSubmoduleEquidistribution/RepresentationDirected/AlgebraEndpoint.html">API</a> · <a href="import-graphs/representation-directed.html">graph</a></td></tr>
         </tbody>
       </table>
     </section>
@@ -67,41 +67,43 @@ QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
     <section aria-labelledby="four-vertex-verification">
       <h2 id="four-vertex-verification">Four-vertex translation-quiver verification</h2>
       <p>The finite calculation used by the paper's four-vertex pattern classification is published as a standalone Python program. It exhausts loop-free arrow relations, projective subsets, and partial translations on four labeled vertices, evaluates the factor-ladder recurrence, and checks the classification while reproducing 6,933 labeled admissible patterns in 329 isomorphism classes.</p>
-      <p>This is a pure translation-quiver calculation. It neither constructs finite-dimensional algebras nor invokes QPA.</p>
       <p><a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/verification/four_vertex_patterns.py">Python source</a> · <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/verification/README.md">Scope, command, and expected output</a></p>
     </section>
 
     <section aria-labelledby="factor-category-proof">
-      <h2 id="factor-category-proof">The literal factor-category bridge</h2>
-      <p>For a reduced selected subword, the formalization identifies the mixed coordinate with the dimension of the actual Hom space in the ideal quotient:</p>
+      <h2 id="factor-category-proof">Mixed coordinates as ideal-quotient Hom dimensions</h2>
+      <p>Order the indecomposable modules as $X_1,\ldots,X_N$. For a set $D$ of omitted positions, put $\mathcal C_D=\operatorname{add}\{X_i\mid i\notin D\}$. If the subword on the positions in $D$ is reduced, then for $a,x\in D$ the formalization proves</p>
       <div class="math-panel">$$\mu_D(a,x)=\dim_K\bigl((\operatorname{mod}A)/[\mathcal C_D]\bigr)(X_a,X_x)\ge 0.$$</div>
       <pre><code>QuotientSubmoduleEquidistribution.RepresentationDirected.FactorARWord.
   selectedWordMixedMultiplicityFor_eq_factorHomDimension_of_reduced</code></pre>
-      <p>The construction identifies selected word positions with surviving quotient indecomposables, matches quotient translation and middle summands with previous and middle word positions—including multiplicities—and evaluates exact right tau-sequences on representable Hom functors. The algebra endpoint constructs this data for both the source and opposite algebra.</p>
+      <p>The proof constructs the induced Auslander–Reiten translation and middle terms in $(\operatorname{mod}A)/[\mathcal C_D]$, including their multiplicities, and applies the right $\tau$-sequences to representable Hom functors. The corresponding constructions for $A$ and $A^{\mathrm{op}}$ enter the quotient and submodule parametrizations.</p>
       <p><a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/QuotientSubmoduleEquidistribution/RepresentationDirected/IyamaFactorCategoryARWord.lean">Source</a> · <a href="api/QuotientSubmoduleEquidistribution/RepresentationDirected/IyamaFactorCategoryARWord.html">API</a> · <a href="import-graphs/factor-category.html">Import graph</a></p>
     </section>
 
     <section aria-labelledby="structural">
-      <h2 id="structural">Generator and compact-closure dictionary</h2>
-      <p>The retained library also formalizes the structural bridge used to express the paper's generator-minimal classification intrinsically. The principal navigation points are:</p>
-      <ul>
-        <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.isPaperNormal_iff_isMinimalGenerator</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.intrinsicBasicNormalIsoClassEquivCompactClosed</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.rightModule_compact_iff_functoriallyFinite</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.qCompact_isMinimalGenerator_iff_eq_relativeSplitProjectives</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.SetClosure.finiteIndependentEquivCompactClosedSet</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.SetClosure.finiteIntervalDeletionChain</code></li>
-        <li><code>QuotientSubmoduleEquidistribution.IndecomposableSkeleton.qClosed_finiteIntervalDeletionChain_of_finiteDimensional</code></li>
-      </ul>
+      <h2 id="structural">Compact closed sets and minimal generators</h2>
+      <p>The formalization also contains the following structural statements used in the manuscript.</p>
+      <table>
+        <thead><tr><th>Mathematical statement</th><th>Lean declaration</th></tr></thead>
+        <tbody>
+          <tr><td>Finite independent sets in a finitary convex geometry correspond to compact closed sets by closure and extreme points.</td><td><code>SetClosure.finiteIndependentEquivCompactClosedSet</code></td></tr>
+          <tr><td>If $C\subseteq D$ are closed and $D\setminus C$ is finite, one can pass from $D$ to $C$ by successive deletions of extreme points.</td><td><code>SetClosure.finiteIntervalDeletionChain</code></td></tr>
+          <tr><td>For quotient-closed subcategories, the successive deleted modules can be chosen splitting projective in the current subcategory.</td><td><code>IndecomposableSkeleton.qClosed_finiteIntervalDeletionChain_of_finiteDimensional</code></td></tr>
+          <tr><td>A finite support is normal—none of its indecomposables belongs to the quotient closure of the others—exactly when it minimally generates its quotient closure.</td><td><code>IndecomposableSkeleton.isPaperNormal_iff_isMinimalGenerator</code></td></tr>
+          <tr><td>Isomorphism classes of basic normal modules correspond to compact quotient-closed supports.</td><td><code>IndecomposableSkeleton.intrinsicBasicNormalIsoClassEquivCompactClosed</code></td></tr>
+          <tr><td>A compact quotient-closed subcategory is determined by its minimal generator, whose indecomposable summands are its relative splitting projectives.</td><td><code>IndecomposableSkeleton.qCompact_isMinimalGenerator_iff_eq_relativeSplitProjectives</code></td></tr>
+          <tr><td>Compact quotient-closed subcategories are precisely the functorially finite ones.</td><td><code>rightModule_compact_iff_functoriallyFinite</code></td></tr>
+        </tbody>
+      </table>
       <p><a href="import-graphs/generator-minimal.html">Generator-minimal import graph</a> · <a href="import-graphs/convex-interval.html">Finite convex-interval import graph</a></p>
     </section>
 
     <section aria-labelledby="evidence">
-      <h2 id="evidence">What the status means</h2>
-      <p>All production declarations compile with the pinned toolchain and Mathlib revision, without source-level project axioms, <code>sorry</code>, or <code>admit</code>. Kernel-visible axiom output is generated from <code>Audit.lean</code>. The first/last-four classifier uses native <code>bv_decide</code> LRAT-certificate checks, so Lean reports generated native axioms and the compiler/interpreter are trusted for that branch. The three standalone structural-class endpoints report only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>
-      <p class="note">This establishes compiler checking of the advertised endpoints and the frozen manuscript's load-bearing proof path. It does not by itself constitute an independent line-by-line mathematical audit of every proof body. The site exposes the right-sequence strictness and representable-Hom expansion used by the main theorem; it does not separately advertise the unused two-sided strictness packaging of the general tau-category corollary.</p>
+      <h2 id="evidence">Checked source and axioms</h2>
+      <p>All production declarations compile with the pinned toolchain and Mathlib revision, without source-level project axioms, <code>sorry</code>, or <code>admit</code>. Kernel-visible axiom output is generated from <code>Audit.lean</code>. The first/last-four classifier uses native <code>bv_decide</code> LRAT-certificate checks, so Lean reports generated native axioms and the compiler/interpreter are trusted for that branch. The standalone Nakayama, radical-square-zero, and representation-directed theorems report only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>
+      <p><a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/TRUST.md">The trust report</a> lists the axiom sets by result and explains the native certificate checks.</p>
     </section>
   </main>
-  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · Frozen-paper synchronization 2026-08-16 · <a href="index.html">Project overview</a></footer>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · <a href="index.html">Project overview</a></footer>
 </body>
 </html>

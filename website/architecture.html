@@ -3,67 +3,69 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Proof blueprint and verification architecture of the quotient-submodule equidistribution Lean repository.">
-  <title>Blueprint · Quotient-submodule equidistribution in Lean</title>
+  <meta name="description" content="Proof structure and repository guide for the quotient-submodule equidistribution Lean formalization.">
+  <title>Proof structure · Quotient-submodule equidistribution in Lean</title>
   <link rel="stylesheet" href="assets/site.css">
+  <script>window.MathJax = {tex: {inlineMath: [['$', '$']], displayMath: [['$$', '$$']]}};</script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <header class="site-header">
     <nav class="nav" aria-label="Primary navigation">
       <a class="brand" href="index.html">Quotient-submodule equidistribution · Lean</a>
       <a href="results.html">Results</a>
-      <a href="architecture.html" aria-current="page">Blueprint</a>
+      <a href="architecture.html" aria-current="page">Proof structure</a>
       <a href="api/index.html">API docs</a>
       <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution">GitHub</a>
     </nav>
   </header>
   <main>
     <div class="eyebrow">Repository navigation</div>
-    <h1>Proof and verification blueprint</h1>
-    <p class="lead">The release has a small public surface over a large retained proof library. Start at the target map; descend into endpoint modules or source-derived import graphs only for the branch you want to inspect.</p>
+    <h1>Proof structure and repository guide</h1>
+    <p class="lead">The main theorem combines the first/last-four coefficient theorem with the Nakayama, radical-square-zero, and representation-directed theorems. The tables below identify the mathematical role of each module and link to import graphs showing its Lean dependencies.</p>
 
     <section aria-labelledby="entry-points">
       <h2 id="entry-points">Entry points</h2>
       <div class="flow">
-        <article class="card"><div class="tag">Human map</div><h3><code>README.md</code></h3><p>Scope, status, build commands, and direct links to exact results.</p></article>
-        <article class="card"><div class="tag">Lean map</div><h3><code>MainResults.lean</code></h3><p>Imports only paper-facing endpoints and checks every stable declaration name.</p></article>
-        <article class="card"><div class="tag">Kernel report</div><h3><code>Audit.lean</code></h3><p>Prints the axiom dependencies of advertised and structural targets.</p></article>
+        <article class="card"><div class="tag">Project overview</div><h3><code>README.md</code></h3><p>Mathematical scope, theorem declarations, build commands, trust information, and source versions.</p></article>
+        <article class="card"><div class="tag">Declaration index</div><h3><code>MainResults.lean</code></h3><p>Imports the theorem modules and checks every stable declaration name listed by the project.</p></article>
+        <article class="card"><div class="tag">Axiom report</div><h3><code>Audit.lean</code></h3><p>Prints the compiler-visible axiom dependencies of the theorem and structural declarations.</p></article>
         <article class="card"><div class="tag">Finite verifier</div><h3><code>verification/four_vertex_patterns.py</code></h3><p>Exhausts the paper's four-vertex translation-quiver patterns and checks their classification.</p></article>
       </div>
-      <p><code>QuotientSubmoduleEquidistribution.lean</code> remains the umbrella import for the full retained library. It is intentionally not the first file a paper reader needs to open.</p>
+      <p><code>QuotientSubmoduleEquidistribution.lean</code> imports the complete library; <code>MainResults.lean</code> gives the shorter index of theorem declarations.</p>
     </section>
 
     <section aria-labelledby="branches">
       <h2 id="branches">Theorem branches</h2>
       <table>
-        <thead><tr><th>Endpoint</th><th>Role</th><th>Project-only graph</th></tr></thead>
+        <thead><tr><th>Theorem module</th><th>Mathematical role</th><th>Import graph</th></tr></thead>
         <tbody>
-          <tr><td><code>RepresentationTheory/MainTheoremEndpoint.lean</code></td><td>Aggregates all four alternatives without hiding extra hypotheses.</td><td><a href="import-graphs/main-theorem.html">main theorem</a></td></tr>
-          <tr><td><code>RepresentationTheory/FirstLastFourEndpoint.lean</code></td><td>Assembles the technically detailed size/cosize-four coefficient theorem and the at-most-nine corollary.</td><td><a href="import-graphs/first-last-four.html">first/last four</a></td></tr>
-          <tr><td><code>RepresentationTheory/NakayamaAlgebraProductFormula.lean</code></td><td>Conventional Nakayama hypothesis, automatic finiteness, polynomial equality, and lattice data.</td><td><a href="import-graphs/nakayama.html">Nakayama</a></td></tr>
-          <tr><td><code>RadicalSquareZero/SeparatedDirectedInterface.lean</code></td><td>Separated-algebra transfer and classification-free directedness route.</td><td><a href="import-graphs/radical-square-zero.html">radical square zero</a></td></tr>
-          <tr><td><code>RepresentationDirected/AlgebraEndpoint.lean</code></td><td>Canonical AR word, literal factor-category mesh realization, profile, and equidistribution theorem.</td><td><a href="import-graphs/representation-directed.html">representation-directed</a></td></tr>
-          <tr><td><code>RepresentationTheory/IntrinsicNormalModules.lean</code></td><td>Intrinsic generator-minimal and compact-closed structural dictionary.</td><td><a href="import-graphs/generator-minimal.html">generator-minimal</a></td></tr>
+          <tr><td><code>RepresentationTheory/MainTheoremEndpoint.lean</code></td><td>Combines representation-finiteness with the at-most-nine, Nakayama, radical-square-zero, and representation-directed alternatives.</td><td><a href="import-graphs/main-theorem.html">main theorem</a></td></tr>
+          <tr><td><code>RepresentationTheory/FirstLastFourEndpoint.lean</code></td><td>Proves equality in degrees at most four and codimensions at most four, then derives the at-most-nine case.</td><td><a href="import-graphs/first-last-four.html">first/last four</a></td></tr>
+          <tr><td><code>RepresentationTheory/NakayamaAlgebraProductFormula.lean</code></td><td>Expresses both level polynomials as the same product of chain polynomials for a Nakayama algebra.</td><td><a href="import-graphs/nakayama.html">Nakayama</a></td></tr>
+          <tr><td><code>RadicalSquareZero/SeparatedDirectedInterface.lean</code></td><td>Passes to the separated triangular algebra, proves it representation-directed, and compares the two separated orientations by duality.</td><td><a href="import-graphs/radical-square-zero.html">radical square zero</a></td></tr>
+          <tr><td><code>RepresentationDirected/AlgebraEndpoint.lean</code></td><td>Constructs the ordered Auslander–Reiten word, the two Bruhat-interval parametrizations, and their common level polynomial.</td><td><a href="import-graphs/representation-directed.html">representation-directed</a></td></tr>
+          <tr><td><code>RepresentationTheory/IntrinsicNormalModules.lean</code></td><td>Relates minimal generators of compact quotient-closed subcategories to basic normal modules and relative splitting projectives.</td><td><a href="import-graphs/generator-minimal.html">minimal generators</a></td></tr>
         </tbody>
       </table>
     </section>
 
-    <section aria-labelledby="synchronized-routes">
-      <h2 id="synchronized-routes">Frozen-paper synchronization routes</h2>
+    <section aria-labelledby="supporting-constructions">
+      <h2 id="supporting-constructions">Supporting constructions</h2>
       <div class="grid">
-        <article class="card"><h3>Factor-category positivity</h3><p><code>IyamaFactorCategoryARWord.lean</code> connects selected positions, quotient tau-orbits, middle-term multiplicities, exact representable meshes, and literal quotient-Hom dimensions.</p><p><a href="import-graphs/factor-category.html">Open its import graph</a></p></article>
-        <article class="card"><h3>Finite convex intervals</h3><p><code>FiniteInterval.lean</code> and <code>ConvexStructure.lean</code> expose the finite-independent/compact-closed equivalence and deletion chains without assuming a finite ambient ground type.</p><p><a href="import-graphs/convex-interval.html">Open their import graph</a></p></article>
+        <article class="card"><h3>Hom spaces in an ideal quotient</h3><p>Order the indecomposables as $X_1,\ldots,X_N$. For an omitted-position set $D$, put $\mathcal C_D=\operatorname{add}\{X_i\mid i\notin D\}$. If the subword on $D$ is reduced, <code>IyamaFactorCategoryARWord.lean</code> constructs the induced Auslander–Reiten translation and middle terms in $(\operatorname{mod}A)/[\mathcal C_D]$. Exact right $\tau$-sequences for representable functors identify the mixed coordinates with Hom-space dimensions.</p><p><a href="import-graphs/factor-category.html">Open the import graph</a></p></article>
+        <article class="card"><h3>Deletion chains in finite closed intervals</h3><p><code>FiniteInterval.lean</code> and <code>ConvexStructure.lean</code> identify finite independent sets with compact closed sets and construct successive extreme-point deletions whenever the difference of two closed sets is finite. The ground set may be infinite.</p><p><a href="import-graphs/convex-interval.html">Open the import graph</a></p></article>
       </div>
     </section>
 
     <section aria-labelledby="boundary">
-      <h2 id="boundary">Dependency boundary</h2>
+      <h2 id="boundary">Dependencies</h2>
       <div class="grid">
-        <article class="card"><h3>Production</h3><p>The root Lake project pins one direct dependency: Mathlib commit <code>28313485…8fe</code>. Adapted foundational code is vendored as attributed local source, so there is no TauCeti package or import.</p></article>
-        <article class="card"><h3>Optional tooling</h3><p><code>verification/</code> adds Comparator and <code>docbuild/</code> adds doc-gen4 as nested Lake projects. Neither changes the theorem library's manifest.</p></article>
+        <article class="card"><h3>Theorem library</h3><p>The root Lake project directly requires Mathlib commit <code>28313485…8fe</code>. Eleven foundational modules adapted from TauCeti are maintained as attributed local source.</p></article>
+        <article class="card"><h3>Verification and documentation</h3><p>Comparator and doc-gen4 are configured in the nested <code>verification/</code> and <code>docbuild/</code> Lake projects, each with its own manifest.</p></article>
       </div>
-      <pre><code>paper-facing target
-  └─ endpoint module
+      <pre><code>result declaration
+  └─ theorem module
       └─ representation-theoretic and combinatorial lemmas
           ├─ local attributed foundation
           └─ pinned Mathlib</code></pre>
@@ -72,12 +74,12 @@
     <section aria-labelledby="verification">
       <h2 id="verification">Verification layers</h2>
       <ol>
-        <li><strong>Kernel compilation:</strong> <code>lake build MainResults</code> checks all transitive proof terms required by the advertised results and the synchronized paper-facing support declarations.</li>
+        <li><strong>Kernel compilation:</strong> <code>lake build MainResults</code> checks the proof terms required by the declarations in the theorem index.</li>
         <li><strong>Finite translation-quiver verification:</strong> <code>python3 verification/four_vertex_patterns.py</code> exhausts the four-vertex census and checks the paper's hook and hookless-pattern classification.</li>
-        <li><strong>Source release checks:</strong> <code>tools/check_release.py</code> checks the direct dependency, forbidden production holes and axioms, target metadata, challenge configs, and static links.</li>
+        <li><strong>Repository checks:</strong> <code>tools/check_release.py</code> checks the direct dependency, verifies that production source contains no <code>sorry</code>, <code>admit</code>, or project-local <code>axiom</code>, and validates theorem metadata, challenge configurations, and static links.</li>
         <li><strong>Axiom report:</strong> <code>lake env lean Audit.lean</code> records each target's kernel-visible axiom set.</li>
-        <li><strong>Independent target statements:</strong> the nested challenges restate result types without importing solution modules; strict Comparator configs cover the three standard-axiom class endpoints.</li>
-        <li><strong>Navigation artifacts:</strong> doc-gen4 renders the declaration API and the release script derives interactive project-only graphs from local Lean import lines.</li>
+        <li><strong>Statement comparison:</strong> the nested challenges state the result types in environments formed from their common dependencies; Comparator configurations cover the three theorems with the standard axiom set.</li>
+        <li><strong>Navigation:</strong> doc-gen4 renders the declaration API, and the graph generator derives interactive import graphs from the local Lean import lines.</li>
       </ol>
     </section>
 
@@ -90,11 +92,11 @@ lake env lean Audit.lean
 python3 verification/four_vertex_patterns.py
 python3 tools/check_release.py
 
-# Optional full umbrella:
+# Complete library:
 lake build QuotientSubmoduleEquidistribution</code></pre>
       <p class="note">For performance, build the project in a native Linux/WSL directory rather than under a Windows-mounted path.</p>
     </section>
   </main>
-  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · Frozen-paper synchronization 2026-08-16 · <a href="results.html">Exact theorem map</a></footer>
+  <footer class="site-footer">Haruhisa Enomoto · Apache-2.0 · <a href="results.html">Theorems and declarations</a></footer>
 </body>
 </html>

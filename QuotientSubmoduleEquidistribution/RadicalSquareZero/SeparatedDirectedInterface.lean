@@ -7,16 +7,13 @@ import QuotientSubmoduleEquidistribution.RepresentationTheory.SeparatedTriangula
 # Representation-directed interface for radical-square-zero algebras
 
 The separated triangular algebra of a representation-finite
-radical-square-zero algebra is finite.  Its projective radicals are supported
-on the semisimple sink side, so a classification-free Auslander--Reiten
-argument proves that it is representation-directed.  The general directed
-theorem then identifies its quotient and submodule polynomials.
-Contragredient duality and the explicit opposite triangular-algebra
-equivalence identify the quotient polynomials for the two separated
-orientations.
-
-No root system, Dynkin classification, Weyl-group polynomial, longest
-element, or ORT parametrization is used.
+radical-square-zero algebra is representation-finite.  Its projective
+radicals are supported on the semisimple sink side; the resulting
+Auslander--Reiten condition makes the separated algebra
+representation-directed.  The representation-directed theorem identifies
+its quotient and submodule polynomials.  Contragredient duality and the
+opposite triangular-algebra equivalence identify the quotient polynomials for
+the two separated orientations.
 -/
 
 set_option autoImplicit false
@@ -179,9 +176,9 @@ def OriginalSeparatedDirected : Prop :=
     (originalSeparatedSkeleton P)
 
 omit [IsAlgClosed K] in
-/-- The representation-finite separated triangular algebra is directed.
-Its projective radicals live entirely on the semisimple radical-side
-diagonal, so the classification-free AR argument applies. -/
+/-- The representation-finite separated triangular algebra is directed
+because every irreducible predecessor of an indecomposable projective is
+projective. -/
 theorem originalSeparatedDirected
     (hA : IsRightRepresentationFinite.{u, u, u} K A) :
     OriginalSeparatedDirected P := by

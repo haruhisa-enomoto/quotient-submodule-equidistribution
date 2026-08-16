@@ -7,10 +7,10 @@ import QuotientSubmoduleEquidistribution.RepresentationTheory.IntrinsicNormalMod
 import QuotientSubmoduleEquidistribution.RepresentationTheory.ConvexStructure
 
 /-!
-# Advertised results
+# Main results
 
-This is the stable entry point for the manuscript's formalized main theorem.
-It deliberately imports only the paper-facing endpoint modules.
+This file imports the theorem modules for the four-case main theorem and the
+listed structural results, and checks their stable declaration names.
 -/
 
 #check QuotientSubmoduleEquidistribution.MainTheoremEndpoint.MainTheoremWitness

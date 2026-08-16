@@ -5,9 +5,8 @@ import QuotientSubmoduleEquidistribution.RepresentationTheory.NakayamaAlgebraPro
 /-!
 # The three general algebra classes in the main theorem
 
-This file collects the paper-facing endpoints for Nakayama,
-radical-square-zero, and representation-directed algebras.  All three
-branches are unconditional.
+This file combines the Nakayama, radical-square-zero, and
+representation-directed theorems under a single three-way hypothesis.
 -/
 
 set_option autoImplicit false

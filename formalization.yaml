@@ -16,12 +16,12 @@ sources:
 
 status:
   scope: >-
-    The universal quotient-submodule equidistribution conjecture is stated but remains open.  This artifact
-    proves the advertised four-case main theorem: at most nine indecomposable
+    The universal quotient-submodule equidistribution conjecture is stated but remains open.  The main theorem
+    proves equidistribution for four classes: at most nine indecomposable
     right modules, Nakayama algebras, radical-square-zero algebras, and
     representation-directed algebras.  The representation-directed branch
-    uses the manuscript's literal ideal-quotient tau-category realization and
-    quotient-Hom dimension formula.
+    constructs the relevant ideal quotient and identifies the selected mixed
+    coordinates with dimensions of its Hom spaces.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms:
@@ -65,8 +65,8 @@ status:
       comparator_config: "verification/ComparatorChallenges/RepresentationDirected.json"
 
 review:
-  status: "Lean-checked; advertised interfaces and the frozen manuscript's load-bearing proof path audited; independent proof-body audit not claimed"
+  status: "Production sources compile with the pinned toolchain; MainResults.lean checks the public declarations and Audit.lean prints their axiom sets"
 
 automation:
   methods: []
-  notes: "The public repository is synchronized through the 2026-08-16 frozen-paper checkpoint; research provenance is recorded in PROVENANCE.md."
+  notes: "The corresponding manuscript and formalization commits are recorded in PROVENANCE.md."

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail fast when the public release boundary or theorem map drifts."""
+"""Check dependencies, production source, theorem metadata, and website links."""
 
 from __future__ import annotations
 
@@ -145,7 +145,7 @@ def yaml_targets() -> list[tuple[str, Path, Path | None]]:
         config_path = ROOT / comparator.group(1) if comparator else None
         targets.append((declaration.group(1), ROOT / file_name.group(1), config_path))
     if len(targets) != 6:
-        fail(f"expected 6 advertised targets, found {len(targets)}")
+        fail(f"expected 6 public result declarations, found {len(targets)}")
     return targets
 
 
@@ -158,7 +158,7 @@ def check_targets() -> None:
         final_name = declaration.rsplit(".", 1)[-1]
         source_code = lean_without_comments_and_strings(source.read_text(encoding="utf-8"))
         if not re.search(rf"\b(?:theorem|def|inductive)\s+{re.escape(final_name)}\b", source_code):
-            fail(f"declaration {declaration} is not found in its advertised source")
+            fail(f"declaration {declaration} is not found in its listed source")
         if declaration not in main_results:
             fail(f"{declaration} is missing from MainResults.lean")
         if f"#print axioms {declaration}" not in audit:
@@ -241,7 +241,7 @@ def main() -> None:
     check_production_sources()
     check_targets()
     check_site()
-    print(f"release check passed: {len(production_lean_files())} production Lean files, 6 advertised targets")
+    print(f"release check passed: {len(production_lean_files())} production Lean files, 6 public results")
 
 
 if __name__ == "__main__":

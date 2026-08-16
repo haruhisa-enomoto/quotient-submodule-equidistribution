@@ -10,7 +10,7 @@ import QuotientSubmoduleEquidistribution.RepresentationTheory.Distributive
 /-!
 # Finite-dimensional algebras and finite indecomposable skeletons
 
-This file supplies the paper-facing outer interface.  It derives all
+This file derives the
 Noetherian, finite-dimensional-module, finite-length, and Artinian
 endomorphism-ring hypotheses from a finite-dimensional algebra over a field,
 then bundles representation-finiteness as a finite complete skeleton of
@@ -141,8 +141,9 @@ theorem rightModule_finiteFacCovariantlyFinite
     IndecomposableSkeleton.finiteFacCovariantlyFinite_of_finiteDimensional
       K σ
 
-/-- Paper-facing compactness-versus-functorial-finiteness theorem for the
-canonical same-universe category of finitely generated right modules. -/
+/-- A quotient-closed subcategory of finitely generated right modules is a
+compact element of the closure lattice exactly when it is functorially
+finite. -/
 theorem rightModule_compact_iff_functoriallyFinite
     (K : Type uK) (A : Type uA)
     [Field K] [Ring A] [Algebra K A] [FiniteDimensional K A] :

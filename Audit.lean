@@ -1,11 +1,11 @@
 import MainResults
 
 /-!
-# Release audit
+# Axiom report
 
-Compiling this file confirms that every advertised declaration is present in
-the pinned environment.  `#print axioms` records the kernel-visible axiom
-dependencies used by each theorem.
+Compiling this file checks that every listed declaration is present in the
+pinned environment.  Each `#print axioms` command reports the
+compiler-visible axiom dependencies of one declaration.
 -/
 
 #print axioms QuotientSubmoduleEquidistribution.MainTheoremEndpoint.rightQuotientSubmoduleEquidistribution
