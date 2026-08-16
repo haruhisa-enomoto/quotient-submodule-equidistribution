@@ -21,6 +21,13 @@ exact finite-independent/compact-closed and finite-interval interfaces. The
 accepted stronger Lean proof of the first/last-four result is retained instead
 of duplicating the manuscript's reader-facing exhaustive enumeration.
 
+The accompanying finite translation-quiver verifier
+`verification/four_vertex_patterns.py` is copied byte-for-byte from
+`experiments/op-conjecture-formalization/verify_paper_four_vertex_patterns.py`
+at internal repository commit
+`778470bcb87fa23f336cb8cbaad08daad4f56dbf`. Its SHA-256 digest at export is
+`8b7669c87d4d9470532dd4fd3ce0b98b74e4cd87e7c3a5e03889c18eac4d6424`.
+
 ## Dependency boundary
 
 The production Lake project directly requires only Mathlib, pinned at commit

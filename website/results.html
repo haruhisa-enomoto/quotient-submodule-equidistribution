@@ -64,6 +64,13 @@ QuotientSubmoduleEquidistribution.BottomLevels.FiniteDimensionalRecurrence.
       </table>
     </section>
 
+    <section aria-labelledby="four-vertex-verification">
+      <h2 id="four-vertex-verification">Four-vertex translation-quiver verification</h2>
+      <p>The finite calculation used by the paper's four-vertex pattern classification is published as a standalone Python program. It exhausts loop-free arrow relations, projective subsets, and partial translations on four labeled vertices, evaluates the factor-ladder recurrence, and checks the classification while reproducing 6,933 labeled admissible patterns in 329 isomorphism classes.</p>
+      <p>This is a pure translation-quiver calculation. It neither constructs finite-dimensional algebras nor invokes QPA.</p>
+      <p><a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/verification/four_vertex_patterns.py">Python source</a> · <a href="https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution/blob/main/verification/README.md">Scope, command, and expected output</a></p>
+    </section>
+
     <section aria-labelledby="factor-category-proof">
       <h2 id="factor-category-proof">The literal factor-category bridge</h2>
       <p>For a reduced selected subword, the formalization identifies the mixed coordinate with the dimension of the actual Hom space in the ideal quotient:</p>

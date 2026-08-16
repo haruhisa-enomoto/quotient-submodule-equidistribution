@@ -28,6 +28,7 @@
         <article class="card"><div class="tag">Human map</div><h3><code>README.md</code></h3><p>Scope, status, build commands, and direct links to exact results.</p></article>
         <article class="card"><div class="tag">Lean map</div><h3><code>MainResults.lean</code></h3><p>Imports only paper-facing endpoints and checks every stable declaration name.</p></article>
         <article class="card"><div class="tag">Kernel report</div><h3><code>Audit.lean</code></h3><p>Prints the axiom dependencies of advertised and structural targets.</p></article>
+        <article class="card"><div class="tag">Finite verifier</div><h3><code>verification/four_vertex_patterns.py</code></h3><p>Exhausts the paper's four-vertex translation-quiver patterns and checks their classification.</p></article>
       </div>
       <p><code>QuotientSubmoduleEquidistribution.lean</code> remains the umbrella import for the full retained library. It is intentionally not the first file a paper reader needs to open.</p>
     </section>
@@ -72,6 +73,7 @@
       <h2 id="verification">Verification layers</h2>
       <ol>
         <li><strong>Kernel compilation:</strong> <code>lake build MainResults</code> checks all transitive proof terms required by the advertised results and the synchronized paper-facing support declarations.</li>
+        <li><strong>Finite translation-quiver verification:</strong> <code>python3 verification/four_vertex_patterns.py</code> exhausts the four-vertex census and checks the paper's hook and hookless-pattern classification.</li>
         <li><strong>Source release checks:</strong> <code>tools/check_release.py</code> checks the direct dependency, forbidden production holes and axioms, target metadata, challenge configs, and static links.</li>
         <li><strong>Axiom report:</strong> <code>lake env lean Audit.lean</code> records each target's kernel-visible axiom set.</li>
         <li><strong>Independent target statements:</strong> the nested challenges restate result types without importing solution modules; strict Comparator configs cover the three standard-axiom class endpoints.</li>
@@ -85,6 +87,7 @@
 lake exe cache get
 lake build MainResults
 lake env lean Audit.lean
+python3 verification/four_vertex_patterns.py
 python3 tools/check_release.py
 
 # Optional full umbrella:

@@ -24,6 +24,8 @@ jobs:
         run: lake env lean Audit.lean | tee axiom-report.txt
       - name: Generate import graphs
         run: bash tools/generate_import_graphs.sh
+      - name: Verify four-vertex translation-quiver census
+        run: python3 verification/four_vertex_patterns.py
       - name: Check release boundary
         run: python3 tools/check_release.py
       - uses: actions/upload-artifact@v4
@@ -47,4 +49,3 @@ jobs:
         run: |
           lake update
           lake build ComparatorChallenges
-

@@ -55,6 +55,19 @@ The exact convex-geometry interfaces added by the same frozen-paper audit are
 `SetClosure.finiteIntervalDeletionChain`, and
 `IndecomposableSkeleton.qClosed_finiteIntervalDeletionChain_of_finiteDimensional`.
 
+## Finite translation-quiver verification
+
+The paper's four-vertex pattern classification is supported by the
+standard-library Python program
+[`verification/four_vertex_patterns.py`](verification/four_vertex_patterns.py).
+This is an exhaustive calculation on finite arrow relations, projective
+subsets, and partial translations. It does not construct algebras or use QPA.
+The program checks all classification assertions while enumerating the
+patterns and reproduces the paper's counts: 6,933 labeled admissible patterns
+in 329 isomorphism classes. See
+[`verification/README.md`](verification/README.md) for the precise scope,
+command, and complete expected output.
+
 [`formalization.yaml`](formalization.yaml) gives the same map in a
 machine-readable form, following the target-oriented convention used by
 OpenAI's `ten-proofs` repository.  [`Audit.lean`](Audit.lean) checks every
@@ -73,6 +86,7 @@ lake update
 lake exe cache get
 lake build MainResults
 lake env lean Audit.lean
+python3 verification/four_vertex_patterns.py
 python3 tools/check_release.py
 ```
 

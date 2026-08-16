@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from html.parser import HTMLParser
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -13,6 +14,7 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_MATHLIB = "28313485bc624fcd16dcb162dd2e2c3c813aa8fe"
+EXPECTED_FOUR_VERTEX_SHA256 = "8b7669c87d4d9470532dd4fd3ce0b98b74e4cd87e7c3a5e03889c18eac4d6424"
 EXPECTED_GRAPHS = {
     "main-theorem.html",
     "first-last-four.html",
@@ -224,6 +226,13 @@ def check_release_files() -> None:
     for name in ("README.md", "LICENSE", "NOTICE", "PROVENANCE.md", "TRUST.md", "formalization.yaml"):
         if not (ROOT / name).is_file():
             fail(f"missing {name}")
+    for name in ("verification/README.md", "verification/four_vertex_patterns.py"):
+        if not (ROOT / name).is_file():
+            fail(f"missing {name}")
+    verifier = ROOT / "verification" / "four_vertex_patterns.py"
+    digest = hashlib.sha256(verifier.read_bytes()).hexdigest()
+    if digest != EXPECTED_FOUR_VERTEX_SHA256:
+        fail("four-vertex verifier differs from the frozen manuscript export")
 
 
 def main() -> None:
