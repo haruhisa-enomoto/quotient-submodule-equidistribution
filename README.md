@@ -5,7 +5,7 @@
 This repository contains a Lean 4 formalization accompanying Haruhisa
 Enomoto's manuscript *An equidistribution conjecture for quotient-closed and
 submodule-closed subcategories*
-([arXiv:ARXIV_ID_PENDING](https://arxiv.org/abs/ARXIV_ID_PENDING)).  The root
+([arXiv:2608.18024](https://arxiv.org/abs/2608.18024)).  The root
 Lake project has one direct dependency, a fixed Mathlib revision.
 
 Let `q_i(A)` and `s_i(A)` be the numbers of quotient-closed and

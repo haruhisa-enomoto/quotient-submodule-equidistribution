@@ -8,7 +8,6 @@ authors:
 license: Apache-2.0
 repository-code: "https://github.com/haruhisa-enomoto/quotient-submodule-equidistribution"
 
-# Replace ARXIV_ID_PENDING throughout the repository when arXiv assigns the identifier.
 preferred-citation:
   type: article
   title: "An equidistribution conjecture for quotient-closed and submodule-closed subcategories"
@@ -18,6 +17,6 @@ preferred-citation:
   year: 2026
   identifiers:
     - type: other
-      value: "arXiv:ARXIV_ID_PENDING"
+      value: "arXiv:2608.18024"
       description: "arXiv identifier"
-  url: "https://arxiv.org/abs/ARXIV_ID_PENDING"
+  url: "https://arxiv.org/abs/2608.18024"
